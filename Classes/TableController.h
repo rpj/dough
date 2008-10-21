@@ -17,6 +17,7 @@
 	NSMutableArray*							_placeTypes;
 	
 	UITableView*							_tv;
+	NSString*								_query;
 }
 
 @property (nonatomic, retain) NavController* navController;

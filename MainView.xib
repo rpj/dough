@@ -35,7 +35,7 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">How Much:</string>
+						<string key="IBUIText">How Much?</string>
 						<object class="NSColor" key="IBUITextColor" id="337899146">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MSAxIDEAA</bytes>
@@ -56,7 +56,7 @@
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Payment Method:</string>
+						<string key="IBUIText">Payment Method?</string>
 						<reference key="IBUITextColor" ref="337899146"/>
 						<reference key="IBUIHighlightedColor" ref="176622225"/>
 						<int key="IBUIBaselineAdjustment">1</int>
@@ -359,10 +359,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">NavController</string>
 					<string key="superclassName">UINavigationController</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">_tableControl</string>
-						<string key="NS.object.0">UITableViewController</string>
-					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/NavController.h</string>
@@ -370,6 +366,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">NavController</string>
+					<string key="superclassName">UINavigationController</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBUserSource</string>
 						<string key="minorKey"/>
@@ -378,10 +375,6 @@
 				<object class="IBPartialClassDescription">
 					<string key="className">TableController</string>
 					<string key="superclassName">UITableViewController</string>
-					<object class="NSMutableDictionary" key="outlets">
-						<string key="NS.key.0">_navControl</string>
-						<string key="NS.object.0">UINavigationController</string>
-					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">Classes/TableController.h</string>

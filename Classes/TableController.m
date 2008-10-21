@@ -19,8 +19,6 @@
 
 - (void) notify:(NSNotification*)notify;
 {
-	NSLog(@"notify: %@", notify);
-	
 	if ([[notify name] isEqualToString:kStartingToLocateNotification])
 	{
 		_navControl.navigationBar.topItem.prompt = @"Locating you...";
@@ -31,18 +29,20 @@
 	}
 	else
 	{
-		if ([[notify name] isEqualToString:kFinishedLoadingNotification])
+		if ([[notify name] isEqualToString:kFinishedLoadingNotification] && _dataControl.hasData)
 		{
 			[_tv cellForRowAtIndexPath:[_tv indexPathForSelectedRow]].accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			
 			DrillDownController* drillDown = [[DrillDownController alloc] initWithStyle:UITableViewStylePlain];
-			drillDown.detailInfo = nil;
+			drillDown.detailInfo = _dataControl.dataStore;
 			
 			[_navControl pushViewController:drillDown animated:YES];
+			_navControl.navigationBar.topItem.title = _query;
 			[drillDown release];
 		}
 		
 		_navControl.navigationBar.topItem.prompt = nil;
+		_navControl.navigationBar.backItem.prompt = nil;
 	}
 }
 
@@ -70,16 +70,12 @@
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellID] autorelease];
 		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.lineBreakMode = UILineBreakModeTailTruncation;
-		//cell.backgroundView = [[UIView alloc] initWithFrame:cell.bounds];
-		//cell.backgroundView.backgroundColor = [UIColor darkGrayColor];
+		cell.selectionStyle = UITableViewCellSelectionStyleGray;
 		cell.opaque = YES;
 		
 		UILabel* label = (UILabel*)[cell.contentView.subviews objectAtIndex:0];
-		//label.textColor = [UIColor whiteColor];
-		//label.backgroundColor = [UIColor darkGrayColor];
 		label.opaque = YES;
 		label.text = [_placeTypes objectAtIndex:indexPath.row];
-		//[label setNeedsDisplay];
 	}
 	else
 		[cell prepareForReuse];
@@ -92,8 +88,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	NSLog(@"- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)%d", section);
-	
 	switch (section)
 	{
 		case 0:
@@ -105,11 +99,9 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSLog(@"didSelectRowAtIndexPath:(NSIndexPath *)%@", indexPath);
-	
 	if (indexPath.section == 0)
 	{
-		[_dataControl startLoadingLocalInfoWithQueryString:[_placeTypes objectAtIndex:indexPath.row]];
+		[_dataControl startLoadingLocalInfoWithQueryString:(_query = [_placeTypes objectAtIndex:indexPath.row])];
 	}
 }
 

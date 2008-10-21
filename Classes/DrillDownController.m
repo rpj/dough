@@ -13,29 +13,19 @@
 
 @synthesize detailInfo = _info;
 
-/*
-- (id)initWithStyle:(UITableViewStyle)style {
-    // Override initWithStyle: if you create the controller programmatically and want to perform customization that is not appropriate for viewDidLoad.
-    if (self = [super initWithStyle:style]) {
-    }
-    return self;
-}
-*/
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view.
-- (void)viewDidLoad {
-    [super viewDidLoad];
-}
-*/
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	NSLog(@"Detail info: %@", _info);
+	
+	if (section == 0)
+	{
+		return [_info count];
+	}
+	
     return 0;
 }
 
@@ -45,10 +35,20 @@
     static NSString *CellIdentifier = @"Cell";
     
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+	
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
-    // Configure the cell
+	
+	cell.selectionStyle = UITableViewCellSelectionStyleGray;
+	cell.opaque = YES;
+	cell.lineBreakMode = UILineBreakModeTailTruncation;
+	cell.accessoryType = UITableViewCellAccessoryNone;
+	
+	UILabel* label = (UILabel*)[cell.contentView.subviews objectAtIndex:0];
+	label.opaque = YES;
+	label.text = [(NSDictionary*)[_info objectAtIndex:indexPath.row] valueForKey:@"titleNoFormatting"];
+	
     return cell;
 }
 

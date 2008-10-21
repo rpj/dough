@@ -10,9 +10,9 @@
 
 
 @interface DrillDownController : UITableViewController {
-	NSDictionary*		_info;
+	NSArray*		_info;
 }
 
-@property (nonatomic, retain) NSDictionary* detailInfo;
+@property (nonatomic, retain) NSArray* detailInfo;
 
 @end

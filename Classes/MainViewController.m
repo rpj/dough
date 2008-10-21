@@ -113,10 +113,24 @@
 - (void)viewDidLoad {
 	_tableControl = [[TableController alloc] initWithStyle:UITableViewStylePlain];
 	_navControl = [[NavController alloc] initWithRootViewController:_tableControl];
+	
+	/*CGRect oFrame = _tableView.frame;
+	CGRect nFrame = _navControl.view.frame;
+	CGRect tFrame = _tableControl.tableView.frame;
+	
+	NSLog(@"tableView.frame: %@\tnavFrame: %@\ttFrame%@", NSStringFromCGRect(oFrame), NSStringFromCGRect(nFrame), NSStringFromCGRect(tFrame));
+	tFrame.size.height = oFrame.size.height - 44;
+	_tableControl.tableView.frame = tFrame;
+	NSLog(@"tFrame%@",  NSStringFromCGRect(_tableControl.tableView.frame));*/
+	_tableControl.tableView.bounces = NO;
+	_tableControl.tableView.scrollEnabled = YES;
+	_tableControl.tableView.scrollsToTop = NO;
+	_tableControl.tableView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
+	
 	[_tableView addSubview:[_navControl view]];
 	_tableControl.navController = _navControl;
 	
-	_navControl.navigationBar.topItem.title = @"Where:";
+	_navControl.navigationBar.topItem.title = @"Where?";
 	_navControl.navigationBar.tintColor = [UIColor darkGrayColor];
 	_navControl.navigationBar.topItem.hidesBackButton = NO;
 	
