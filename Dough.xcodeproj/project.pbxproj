@@ -19,6 +19,11 @@
 		289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233A90DB2D0DB0083E9F9 /* MainViewController.m */; };
 		289233AF0DB2D0DB0083E9F9 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AB0DB2D0DB0083E9F9 /* RootViewController.m */; };
 		289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */; };
+		947F65C60EAE4041008DB1A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947F65C50EAE4041008DB1A4 /* CoreGraphics.framework */; };
+		947F66D60EAE492F008DB1A4 /* NavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 947F66D00EAE492F008DB1A4 /* NavController.m */; };
+		947F66D70EAE492F008DB1A4 /* DrillDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 947F66D10EAE492F008DB1A4 /* DrillDownController.m */; };
+		947F66D80EAE492F008DB1A4 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 947F66D30EAE492F008DB1A4 /* TableController.m */; };
+		947F66D90EAE492F008DB1A4 /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 947F66D40EAE492F008DB1A4 /* DataController.m */; };
 		94809A190EAD3886001FEE0B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94809A180EAD3886001FEE0B /* CoreLocation.framework */; };
 		94809B410EAD4F14001FEE0B /* DevIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 94809B400EAD4F14001FEE0B /* DevIcon.png */; };
 /* End PBXBuildFile section */
@@ -45,6 +50,15 @@
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* Dough_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dough_Prefix.pch; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		947F65C50EAE4041008DB1A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		947F66CE0EAE492F008DB1A4 /* DrillDownController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrillDownController.h; path = Classes/DrillDownController.h; sourceTree = "<group>"; };
+		947F66CF0EAE492F008DB1A4 /* NavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavController.h; path = Classes/NavController.h; sourceTree = "<group>"; };
+		947F66D00EAE492F008DB1A4 /* NavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavController.m; path = Classes/NavController.m; sourceTree = "<group>"; };
+		947F66D10EAE492F008DB1A4 /* DrillDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrillDownController.m; path = Classes/DrillDownController.m; sourceTree = "<group>"; };
+		947F66D20EAE492F008DB1A4 /* TableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableController.h; path = Classes/TableController.h; sourceTree = "<group>"; };
+		947F66D30EAE492F008DB1A4 /* TableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableController.m; path = Classes/TableController.m; sourceTree = "<group>"; };
+		947F66D40EAE492F008DB1A4 /* DataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataController.m; path = Classes/DataController.m; sourceTree = "<group>"; };
+		947F66D50EAE492F008DB1A4 /* DataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataController.h; path = Classes/DataController.h; sourceTree = "<group>"; };
 		94809A180EAD3886001FEE0B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		94809B400EAD4F14001FEE0B /* DevIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -57,6 +71,7 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				94809A190EAD3886001FEE0B /* CoreLocation.framework in Frameworks */,
+				947F65C60EAE4041008DB1A4 /* CoreGraphics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +112,7 @@
 		289233A00DB2D0730083E9F9 /* Main View */ = {
 			isa = PBXGroup;
 			children = (
+				947F65090EAE337C008DB1A4 /* Table and Data */,
 				289233A40DB2D0840083E9F9 /* MainView.h */,
 				289233A50DB2D0840083E9F9 /* MainView.m */,
 				289233A80DB2D0DB0083E9F9 /* MainViewController.h */,
@@ -143,11 +159,27 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				947F65C50EAE4041008DB1A4 /* CoreGraphics.framework */,
 				94809A180EAD3886001FEE0B /* CoreLocation.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		947F65090EAE337C008DB1A4 /* Table and Data */ = {
+			isa = PBXGroup;
+			children = (
+				947F66CF0EAE492F008DB1A4 /* NavController.h */,
+				947F66D00EAE492F008DB1A4 /* NavController.m */,
+				947F66CE0EAE492F008DB1A4 /* DrillDownController.h */,
+				947F66D10EAE492F008DB1A4 /* DrillDownController.m */,
+				947F66D20EAE492F008DB1A4 /* TableController.h */,
+				947F66D30EAE492F008DB1A4 /* TableController.m */,
+				947F66D50EAE492F008DB1A4 /* DataController.h */,
+				947F66D40EAE492F008DB1A4 /* DataController.m */,
+			);
+			name = "Table and Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,6 +252,10 @@
 				289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */,
 				289233AF0DB2D0DB0083E9F9 /* RootViewController.m in Sources */,
 				289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */,
+				947F66D60EAE492F008DB1A4 /* NavController.m in Sources */,
+				947F66D70EAE492F008DB1A4 /* DrillDownController.m in Sources */,
+				947F66D80EAE492F008DB1A4 /* TableController.m in Sources */,
+				947F66D90EAE492F008DB1A4 /* DataController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
