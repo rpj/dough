@@ -21,6 +21,7 @@
 
 - (void) needToSave:(NSNotification*)notify;
 {
+	/*
 	if (_amountGiven)
 	{
 		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -45,6 +46,7 @@
 		
 		NSLog(@"save successful? %d", [defaults synchronize]);
 	}	
+	 */
 }
 
 - (void) editingEnd:(UITextField*)sender
@@ -99,17 +101,6 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) 
 	{
-		_locMgr = [[CLLocationManager alloc] init];
-		_locMgr.delegate = self;
-		_locMgr.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-		_locMgr.distanceFilter = 2.0;
-		
-		_pickerData = [[NSMutableArray alloc] init];
-		_placeTypes = [[NSMutableArray arrayWithObjects:@"(None)", @"Gas", @"Food", @"Coffee", @"Banking", @"Retail", @"Theatre", @"Hotels", nil] retain];
-		
-		_newestLoc = nil;
-		
-		_canReqAgain = YES;
 		_amountGiven = NO;
 		_lastSelectedWhereCat = 0;
 		
@@ -120,22 +111,13 @@
 }
 
 - (void)viewDidLoad {
-	_howMuchLabel.font = _whereLabel.font = _methodLabel.font = [UIFont boldSystemFontOfSize:24];
+	_howMuchLabel.font = _methodLabel.font = [UIFont boldSystemFontOfSize:24];
 	
 	_amountField.font = [UIFont boldSystemFontOfSize:18];
 	[_amountField addTarget:self action:@selector(editingEnd:) forControlEvents:UIControlEventEditingDidEndOnExit];
 	[_amountField addTarget:self action:@selector(editingChanged:) forControlEvents:UIControlEventEditingChanged];
 	
 	_methodControl.tintColor = [UIColor grayColor];
-	
-	if (_locMgr.locationServicesEnabled)
-	{
-		[_pickerData addObject:[NSDictionary dictionaryWithObject:kLocatingString forKey:kTitleKey]];
-		[_wherePicker reloadComponent:1];
-		
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-		[_locMgr startUpdatingLocation];
-	}
 }
 
 
@@ -153,77 +135,6 @@
 
 
 - (void)dealloc {
-	[_locMgr stopUpdatingLocation];
-	[_locMgr release];
-	
-	[_pickerData release];
-	[_placeTypes release];
-	
 	[super dealloc];
-}
-
-
-///// picker view delegates
-- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-	switch (component)
-	{
-		case 0:
-			return [_placeTypes count];
-			
-		case 1:
-			return [_pickerData count];
-	}
-	
-	return 0;
-}
-
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-	return (_locMgr.locationServicesEnabled) ? 2 : 1;
-}
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView widthForComponent:(NSInteger)component
-{
-	return (_locMgr.locationServicesEnabled) ? ((component == 0) ? 80 : 220) : 300;
-}
-
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component;
-{
-	if (component == 0 && row <= [_placeTypes count])
-	{
-		return [_placeTypes objectAtIndex:row];
-	}
-	else if (component == 1 && row <= [_pickerData count])
-	{
-		return [(NSDictionary*)[_pickerData objectAtIndex:row] valueForKey:kTitleKey];
-	}
-	
-	return @"No Title";
-}
-
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-	if (component == 0 && row && row <= [_placeTypes count] && row != _lastSelectedWhereCat)
-	{
-		if (_newestLoc && _canReqAgain)
-		{
-			[_pickerData removeAllObjects];
-			[_pickerData addObject:[NSDictionary dictionaryWithObject:@"Loading..." forKey:kTitleKey]];
-			[_wherePicker reloadComponent:1];
-			
-			CLLocationCoordinate2D coord = _newestLoc.coordinate;
-			
-			NSURL* url = [NSURL URLWithString:
-						  [NSString stringWithFormat:@"http://ajax.googleapis.com/ajax/services/search/local?v=1.0&rsz=large&sll=%f,%f&q=%@",
-						   coord.latitude, coord.longitude, [_placeTypes objectAtIndex:row]]];
-			
-			NSLog(@"Attempting request with URL: %@", url);
-			[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-			[NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:url] delegate:self];
-			
-			_lastSelectedWhereCat = row;
-		}
-	}
 }
 @end

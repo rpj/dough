@@ -8,7 +8,7 @@
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="48"/>
+			<integer value="28"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -86,37 +86,6 @@
 							<int key="IBUIKeyboardType">2</int>
 							<int key="IBUIReturnKeyType">9</int>
 						</object>
-					</object>
-					<object class="IBUILabel" id="230788156">
-						<reference key="NSNextResponder" ref="169245649"/>
-						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{20, 202}, {280, 34}}</string>
-						<reference key="NSSuperview" ref="169245649"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Where:</string>
-						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MSAxIDEAA</bytes>
-							<object class="NSColorSpace" key="NSCustomColorSpace">
-								<int key="NSID">1</int>
-							</object>
-						</object>
-						<nil key="IBUIHighlightedColor"/>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">1.000000e+01</float>
-						<int key="IBUITextAlignment">1</int>
-					</object>
-					<object class="IBUIPickerView" id="425141451">
-						<reference key="NSNextResponder" ref="169245649"/>
-						<int key="NSvFlags">-2147483356</int>
-						<string key="NSFrame">{{0, 244}, {320, 216}}</string>
-						<reference key="NSSuperview" ref="169245649"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<bool key="IBUIShowsSelectionIndicator">YES</bool>
 					</object>
 					<object class="IBUISegmentedControl" id="783290221">
 						<reference key="NSNextResponder" ref="169245649"/>
@@ -248,38 +217,6 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_wherePicker</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="425141451"/>
-					</object>
-					<int key="connectionID">40</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">dataSource</string>
-						<reference key="source" ref="425141451"/>
-						<reference key="destination" ref="372490531"/>
-					</object>
-					<int key="connectionID">41</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">delegate</string>
-						<reference key="source" ref="425141451"/>
-						<reference key="destination" ref="372490531"/>
-					</object>
-					<int key="connectionID">42</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">_whereLabel</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="230788156"/>
-					</object>
-					<int key="connectionID">43</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">_methodLabel</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="809026034"/>
@@ -398,8 +335,6 @@
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<reference ref="469215128"/>
-							<reference ref="425141451"/>
-							<reference ref="230788156"/>
 							<reference ref="7059131"/>
 							<reference ref="783290221"/>
 							<reference ref="809026034"/>
@@ -420,16 +355,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">35</int>
 						<reference key="object" ref="7059131"/>
-						<reference key="parent" ref="169245649"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">38</int>
-						<reference key="object" ref="230788156"/>
-						<reference key="parent" ref="169245649"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">39</int>
-						<reference key="object" ref="425141451"/>
 						<reference key="parent" ref="169245649"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -494,8 +419,6 @@
 					<string>28.IBPluginDependency</string>
 					<string>34.IBPluginDependency</string>
 					<string>35.IBPluginDependency</string>
-					<string>38.IBPluginDependency</string>
-					<string>39.IBPluginDependency</string>
 					<string>44.IBPluginDependency</string>
 					<string>46.IBPluginDependency</string>
 					<string>48.IBPluginDependency</string>
@@ -513,8 +436,6 @@
 					<string>UIResponder</string>
 					<string>MainView</string>
 					<string>{{440, 370}, {320, 460}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -607,7 +528,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">NavController.h</string>
+						<string key="minorKey">Classes/NavController.h</string>
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
@@ -619,7 +540,7 @@
 					</object>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">TableController.h</string>
+						<string key="minorKey">Classes/TableController.h</string>
 					</object>
 				</object>
 			</object>
