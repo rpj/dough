@@ -9,10 +9,14 @@
 #import "TableController.h"
 #import "DataController.h"
 #import "DrillDownController.h"
+#import "NavController.h"
 
 #import <CoreGraphics/CoreGraphics.h>
 
 @implementation TableController
+
+@synthesize navController = _navControl;
+
 - (void) notify:(NSNotification*)notify;
 {
 	NSLog(@"notify: %@", notify);

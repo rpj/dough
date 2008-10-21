@@ -9,8 +9,8 @@
 #import "MainViewController.h"
 #import "MainView.h"
 #import "DoughAppDelegate.h"
-
-#import <JSON/JSON.h>
+#import "NavController.h"
+#import "TableController.h"
 
 #define kLocatingString			@"Locating you..."
 #define kTitleKey				@"titleNoFormatting"
@@ -111,6 +111,15 @@
 }
 
 - (void)viewDidLoad {
+	_tableControl = [[TableController alloc] initWithStyle:UITableViewStylePlain];
+	_navControl = [[NavController alloc] initWithRootViewController:_tableControl];
+	[_tableView addSubview:[_navControl view]];
+	_tableControl.navController = _navControl;
+	
+	_navControl.navigationBar.topItem.title = @"Where:";
+	_navControl.navigationBar.tintColor = [UIColor darkGrayColor];
+	_navControl.navigationBar.topItem.hidesBackButton = NO;
+	
 	_howMuchLabel.font = _methodLabel.font = [UIFont boldSystemFontOfSize:24];
 	
 	_amountField.font = [UIFont boldSystemFontOfSize:18];

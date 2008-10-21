@@ -10,7 +10,6 @@
 
 
 @interface NavController : UINavigationController {
-	IBOutlet UITableViewController*			_tableControl;
 }
 
 @end

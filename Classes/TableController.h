@@ -8,15 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@class DataController;
+@class DataController, NavController;
 
 @interface TableController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
-	IBOutlet UINavigationController*		_navControl;
+	NavController*							_navControl;
 	
 	DataController*							_dataControl;
 	NSMutableArray*							_placeTypes;
 	
 	UITableView*							_tv;
 }
+
+@property (nonatomic, retain) NavController* navController;
 
 @end

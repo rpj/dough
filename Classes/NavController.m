@@ -12,8 +12,5 @@
 @implementation NavController
 - (void)viewDidLoad
 {
-	[self pushViewController:_tableControl animated:NO];
-	self.navigationBar.tintColor = [UIColor darkGrayColor];
-	self.navigationBar.topItem.title = @"Where:";
 }
 @end
