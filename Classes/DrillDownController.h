@@ -12,6 +12,7 @@
 @interface DrillDownController : UITableViewController {
 	NSArray*		_info;
 	CGRect			_givenFrame;
+	NSIndexPath*	_lastSelect;
 }
 
 @property (nonatomic, retain) NSArray* detailInfo;

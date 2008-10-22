@@ -16,6 +16,13 @@
 
 @implementation TableController
 
+@dynamic location;
+
+- (CLLocation*) location;
+{
+	return _dataControl.locationServicesEnabled ? _dataControl.latestLocation : nil;
+}
+
 @synthesize navController = _navControl;
 @synthesize tableView = _tv;
 
@@ -23,7 +30,7 @@
 {
 	if ([[notify name] isEqualToString:kStartingToLocateNotification])
 	{
-		//_navControl.navigationBar.topItem.title = @"Locating you...";
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	}
 	else if ([[notify name] isEqualToString:kStartingToLoadNotification])
 	{
@@ -31,9 +38,10 @@
 	}
 	else
 	{
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+		
 		if ([[notify name] isEqualToString:kFinishedLoadingNotification] && _dataControl.hasData)
 		{
-			[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 			[_tv cellForRowAtIndexPath:[_tv indexPathForSelectedRow]].accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			
 			DrillDownController* drillDown = [[DrillDownController alloc] initWithStyle:UITableViewStylePlain];
@@ -44,33 +52,44 @@
 			_navControl.navigationBar.topItem.title = _query;
 			[drillDown release];
 		}
-		else if ([[notify name] isEqualToString:kFinishedLocatingNotification])// && _fetchAfterLoc && _query) 
+		else if ([[notify name] isEqualToString:kFinishedLocatingNotification] && _fetchAfterLoc && _query) 
 		{
-			if (_fetchAfterLoc && _query)
-				_fetchAfterLoc = ![_dataControl startLoadingLocalInfoWithQueryString:_query];
-			
-			//_navControl.navigationBar.topItem.title = @"Where?";
+			_fetchAfterLoc = ![_dataControl startLoadingLocalInfoWithQueryString:_query];
 		}
 			
 		_navControl.navigationBar.topItem.prompt = nil;
 	}
 }
 
-- (void) needToSave:(NSNotification*) notify;
+- (NSDictionary*) dictionaryForSelection;
 {
-	NSLog(@"needToSave:");
-	[_dataControl sendEntries];
-}
-
-- (id) init;
-{
-	if ((self = [super init]))
+	NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+	
+	NSIndexPath* ipath = [self.tableView indexPathForSelectedRow];
+	
+	if (ipath.row < [_placeTypes count])
 	{
-		NSLog(@"TCINIT");
-		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needToSave:) name:kNeedToSaveNotification object:nil];
+		[dict setObject:[_placeTypes objectAtIndex:ipath.row] forKey:@"abstract"];
 	}
 	
-	return self;
+	if (_concreteWhereInfo)
+	{
+		[dict setObject:_concreteWhereInfo forKey:@"concrete"];
+		[dict setObject:[_concreteWhereInfo objectForKey:@"titleNoFormatting"] forKey:@"concreteTitle"];
+	}
+	
+	return (NSDictionary*)dict;
+}
+
+- (void) concreteWhere:(NSNotification*)notify;
+{
+	NSDictionary* uinfo = [notify userInfo];
+	
+	if (uinfo)
+	{
+		if (_concreteWhereInfo) [_concreteWhereInfo release];
+		_concreteWhereInfo = [uinfo retain];
+	}
 }
 
 - (void) viewDidLoad;
@@ -80,15 +99,20 @@
 					@"Transportation", nil] retain];
 	
 	NSNotificationCenter* ncent = [NSNotificationCenter defaultCenter];
+	
 	[ncent addObserver:self selector:@selector(notify:) name:kStartingToLocateNotification object:nil];
 	[ncent addObserver:self selector:@selector(notify:) name:kStartingToLoadNotification object:nil];
 	[ncent addObserver:self selector:@selector(notify:) name:kFinishedLocatingNotification object:nil];
 	[ncent addObserver:self selector:@selector(notify:) name:kFinishedLoadingNotification object:nil];
 	
+	[ncent addObserver:self selector:@selector(concreteWhere:) name:kDrillDownSelectNotification object:nil];
+	
 	_dataControl = [[DataController alloc] init];
 	
 	_tv = (UITableView*)self.view;
 	_givenFrame = self.view.frame;
+	
+	_concreteWhereInfo = nil;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

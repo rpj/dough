@@ -9,11 +9,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 
-#define kStartingToLocateNotification		@"kDoughDataControllerStartingToLocate"
-#define kStartingToLoadNotification			@"kDoughDataControllerStartingToLoad"
-#define kFinishedLocatingNotification		@"kDoughDataControllerFinishedLocating"
-#define kFinishedLoadingNotification		@"kDoughDataControllerFinishedLoading"
-
 @interface DataController : NSObject <CLLocationManagerDelegate> {
 	IBOutlet CLLocationManager*		_locMgr;
 	
@@ -31,5 +26,4 @@
 @property (nonatomic, readonly, assign) CLLocation* latestLocation;
 
 - (BOOL) startLoadingLocalInfoWithQueryString:(NSString*)query;
-- (void) sendEntries;
 @end

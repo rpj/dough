@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreLocation/CoreLocation.h>
 
 @class DataController, NavController;
 
@@ -22,9 +23,14 @@
 	BOOL									_fetchAfterLoc;
 	
 	CGRect									_givenFrame;
+	
+	NSDictionary*							_concreteWhereInfo;
 }
 
 @property (nonatomic, retain) NavController* navController;
 @property (nonatomic, readonly) UITableView* tableView;
+@property (nonatomic, readonly) CLLocation* location;
+
+- (NSDictionary*) dictionaryForSelection;
 
 @end

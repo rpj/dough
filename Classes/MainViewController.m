@@ -15,11 +15,10 @@
 
 @implementation MainViewController
 
-///// view controller stuff
-
 - (void) needToSave:(NSNotification*)notify;
 {
-	/*
+	// when asked to save, the first thing we do is dump the current information to the user defaults
+	// store, to ensure that at very least, what is on screen will be saved (as long as an amount is given)
 	if (_amountGiven)
 	{
 		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -32,19 +31,20 @@
 		
 		[dict setObject:_amountField.text forKey:@"amount"];
 		[dict setObject:[_methodControl titleForSegmentAtIndex:_methodControl.selectedSegmentIndex] forKey:@"paymentMethod"];
-		[dict setObject:[self pickerView:_wherePicker titleForRow:[_wherePicker selectedRowInComponent:0] forComponent:0] forKey:@"abstractWhere"];
-		[dict setObject:[NSDate date] forKey:@"date"];
+		[dict setObject:[NSString stringWithFormat:@"%@", [NSDate date]] forKey:@"date"];
 		
-		if (_locMgr.locationServicesEnabled && [_wherePicker selectedRowInComponent:1] > 0)
-			[dict setObject:[_pickerData objectAtIndex:[_wherePicker selectedRowInComponent:1]] forKey:@"concreteWhere"];
+		if (_tableControl.location)
+		{
+			[dict setObject:[_tableControl.location description] forKey:@"location"];
+		}
+		
+		[dict setObject:[_tableControl dictionaryForSelection] forKey:@"where"];
 		
 		[writeArr addObject:dict];
 		[defaults setObject:writeArr forKey:@"entriesToPost"];
-		NSLog(@"save dict: %@", dict);
-		
-		NSLog(@"save successful? %d", [defaults synchronize]);
-	}	
-	 */
+	}
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:kSendToWebNowNotification object:self];
 }
 
 - (void) editingEnd:(UITextField*)sender

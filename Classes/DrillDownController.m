@@ -7,7 +7,7 @@
 //
 
 #import "DrillDownController.h"
-
+#import "DoughAppDelegate.h"
 
 @implementation DrillDownController
 
@@ -40,8 +40,7 @@
 	if (_givenFrame.size.height != tableView.frame.size.height)
 		tableView.frame = _givenFrame;
 	
-    static NSString *CellIdentifier = @"Cell";
-    
+	NSString *CellIdentifier = [NSString stringWithFormat:@"DrillDownCell[%@]", indexPath];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 	
     if (cell == nil) {
@@ -65,58 +64,23 @@
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	((UITableViewCell*)[tableView cellForRowAtIndexPath:indexPath]).accessoryType = UITableViewCellAccessoryCheckmark;
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath 
+{
+	if (indexPath.row < [_info count])
+	{
+		if (_lastSelect)
+		{
+			((UITableViewCell*)[tableView cellForRowAtIndexPath:_lastSelect]).accessoryType = UITableViewCellAccessoryNone;
+			[_lastSelect release];
+		}
+		
+		((UITableViewCell*)[tableView cellForRowAtIndexPath:indexPath]).accessoryType = UITableViewCellAccessoryCheckmark;
+		_lastSelect = [indexPath retain];
+		[[NSNotificationCenter defaultCenter] postNotificationName:kDrillDownSelectNotification 
+															object:self 
+														  userInfo:[_info objectAtIndex:indexPath.row]];
+	}
 }
-
-
-/*
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-    }
-    if (editingStyle == UITableViewCellEditingStyleInsert) {
-    }
-}
-*/
-
-/*
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-/*
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    return YES;
-}
-*/
-
-
-/*
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-}
-*/
-
-/*
-- (void)viewWillDisappear:(BOOL)animated {
-}
-*/
-/*
-- (void)viewDidDisappear:(BOOL)animated {
-}
-*/
-/*
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-*/
 
 - (void)dealloc {
     [super dealloc];

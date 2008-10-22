@@ -28,7 +28,9 @@
 	if (toPost && [toPost isKindOfClass:[NSArray class]])
 	{
 		NSLog(@"Got dict we must post! %@", toPost);
-		//[defaults removeObjectForKey:@"entriesToPost"];
+		[[NSNotificationCenter defaultCenter] postNotificationName:kNeedToSaveNotification object:self];
+		
+		[defaults removeObjectForKey:@"entriesToPost"];
 	}
 }
 
