@@ -3,13 +3,12 @@
 //  Dough
 //
 //  Created by Ryan Joseph on 10/20/08.
-//  Copyright Micromat, Inc. 2008. All rights reserved.
+//  Copyright Ryan Joseph, 2008. All rights reserved.
 //
 
 #import "MainViewController.h"
 #import "MainView.h"
 #import "DoughAppDelegate.h"
-#import "NavController.h"
 #import "TableController.h"
 #import "DataController.h"
 
@@ -157,7 +156,7 @@
 	_tableControl.view = table;
 	[_tableView addSubview:table];
 	
-	_navControl = [[NavController alloc] initWithRootViewController:_tableControl];
+	_navControl = [[UINavigationController alloc] initWithRootViewController:_tableControl];
 	oFrame = _navControl.view.frame;
 	oFrame.origin.y = 0;
 	_navControl.view.frame = oFrame;

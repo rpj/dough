@@ -20,7 +20,6 @@
 		289233AF0DB2D0DB0083E9F9 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AB0DB2D0DB0083E9F9 /* RootViewController.m */; };
 		289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 289233AD0DB2D0DB0083E9F9 /* FlipsideViewController.m */; };
 		947F65C60EAE4041008DB1A4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 947F65C50EAE4041008DB1A4 /* CoreGraphics.framework */; };
-		947F66D60EAE492F008DB1A4 /* NavController.m in Sources */ = {isa = PBXBuildFile; fileRef = 947F66D00EAE492F008DB1A4 /* NavController.m */; };
 		947F66D70EAE492F008DB1A4 /* DrillDownController.m in Sources */ = {isa = PBXBuildFile; fileRef = 947F66D10EAE492F008DB1A4 /* DrillDownController.m */; };
 		947F66D80EAE492F008DB1A4 /* TableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 947F66D30EAE492F008DB1A4 /* TableController.m */; };
 		947F66D90EAE492F008DB1A4 /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 947F66D40EAE492F008DB1A4 /* DataController.m */; };
@@ -54,8 +53,6 @@
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		947F65C50EAE4041008DB1A4 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		947F66CE0EAE492F008DB1A4 /* DrillDownController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DrillDownController.h; path = Classes/DrillDownController.h; sourceTree = "<group>"; };
-		947F66CF0EAE492F008DB1A4 /* NavController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NavController.h; path = Classes/NavController.h; sourceTree = "<group>"; };
-		947F66D00EAE492F008DB1A4 /* NavController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NavController.m; path = Classes/NavController.m; sourceTree = "<group>"; };
 		947F66D10EAE492F008DB1A4 /* DrillDownController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DrillDownController.m; path = Classes/DrillDownController.m; sourceTree = "<group>"; };
 		947F66D20EAE492F008DB1A4 /* TableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TableController.h; path = Classes/TableController.h; sourceTree = "<group>"; };
 		947F66D30EAE492F008DB1A4 /* TableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TableController.m; path = Classes/TableController.m; sourceTree = "<group>"; };
@@ -176,8 +173,6 @@
 		947F65090EAE337C008DB1A4 /* Table and Data */ = {
 			isa = PBXGroup;
 			children = (
-				947F66CF0EAE492F008DB1A4 /* NavController.h */,
-				947F66D00EAE492F008DB1A4 /* NavController.m */,
 				947F66CE0EAE492F008DB1A4 /* DrillDownController.h */,
 				947F66D10EAE492F008DB1A4 /* DrillDownController.m */,
 				947F66D20EAE492F008DB1A4 /* TableController.h */,
@@ -260,7 +255,6 @@
 				289233AE0DB2D0DB0083E9F9 /* MainViewController.m in Sources */,
 				289233AF0DB2D0DB0083E9F9 /* RootViewController.m in Sources */,
 				289233B00DB2D0DB0083E9F9 /* FlipsideViewController.m in Sources */,
-				947F66D60EAE492F008DB1A4 /* NavController.m in Sources */,
 				947F66D70EAE492F008DB1A4 /* DrillDownController.m in Sources */,
 				947F66D80EAE492F008DB1A4 /* TableController.m in Sources */,
 				947F66D90EAE492F008DB1A4 /* DataController.m in Sources */,

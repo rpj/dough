@@ -3,7 +3,7 @@
 //  Dough
 //
 //  Created by Ryan Joseph on 10/21/08.
-//  Copyright 2008 Micromat, Inc.. All rights reserved.
+//  Copyright 2008 Ryan Joseph. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -12,7 +12,7 @@
 @class DataController, NavController;
 
 @interface TableController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
-	NavController*							_navControl;
+	UINavigationController*					_navControl;
 	
 	DataController*							_dataControl;
 	NSMutableArray*							_placeTypes;
@@ -27,7 +27,7 @@
 	NSDictionary*							_concreteWhereInfo;
 }
 
-@property (nonatomic, retain) NavController* navController;
+@property (nonatomic, retain) UINavigationController* navController;
 @property (nonatomic, readonly) UITableView* tableView;
 @property (nonatomic, readonly) CLLocation* location;
 

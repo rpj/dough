@@ -3,7 +3,7 @@
 //  Dough
 //
 //  Created by Ryan Joseph on 10/21/08.
-//  Copyright 2008 Micromat, Inc.. All rights reserved.
+//  Copyright 2008 Ryan Joseph. All rights reserved.
 //
 
 #import "DrillDownController.h"

@@ -3,7 +3,7 @@
 //  Dough
 //
 //  Created by Ryan Joseph on 10/20/08.
-//  Copyright Micromat, Inc. 2008. All rights reserved.
+//  Copyright Ryan Joseph, 2008. All rights reserved.
 //
 
 #import "DoughAppDelegate.h"
