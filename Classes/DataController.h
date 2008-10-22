@@ -31,4 +31,5 @@
 @property (nonatomic, readonly, assign) CLLocation* latestLocation;
 
 - (BOOL) startLoadingLocalInfoWithQueryString:(NSString*)query;
+- (void) sendEntries;
 @end

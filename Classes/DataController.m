@@ -152,5 +152,20 @@
 	_canMakeRequest = YES;
 }
 
-
+- (void) sendEntries;
+{
+	NSString* reqBody = [[NSString stringWithFormat:@"json=%@", @"somefuckingjsonshit"]
+						 stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+	NSMutableURLRequest* urlReq = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://24.130.91.57/cgi-bin/doughTest.cgi"]];
+	
+	[urlReq setHTTPMethod:@"POST"];
+	[urlReq setHTTPShouldHandleCookies:NO];
+	[urlReq setHTTPBody:[NSData dataWithBytes:[reqBody cStringUsingEncoding:NSASCIIStringEncoding]
+									   length:[reqBody lengthOfBytesUsingEncoding:NSASCIIStringEncoding]]];
+	
+	NSURLResponse* resp = nil;
+	NSLog(@"Sending sync request: %@", urlReq);
+	NSData* retData = [NSURLConnection sendSynchronousRequest:urlReq returningResponse:&resp error:nil]; 
+	NSLog(@"got response '%@', data:\n%@\n", resp, retData);
+}
 @end
