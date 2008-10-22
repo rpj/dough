@@ -17,6 +17,8 @@
 - (void) viewDidLoad;
 {
 	self.view.frame = _givenFrame;
+	self.view.backgroundColor = [UIColor blackColor];
+	self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -46,14 +48,18 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
     }
 	
-	cell.selectionStyle = UITableViewCellSelectionStyleGray;
-	cell.opaque = YES;
-	cell.lineBreakMode = UILineBreakModeTailTruncation;
 	cell.accessoryType = UITableViewCellAccessoryNone;
+	cell.lineBreakMode = UILineBreakModeTailTruncation;
+	cell.selectionStyle = UITableViewCellSelectionStyleGray;
+	cell.backgroundView = [[[UIView alloc] initWithFrame:cell.bounds] autorelease];
+	cell.backgroundView.backgroundColor = [UIColor blackColor];
+	cell.opaque = YES;
 	
 	UILabel* label = (UILabel*)[cell.contentView.subviews objectAtIndex:0];
-	label.opaque = YES;
+	label.textColor = [UIColor whiteColor];
 	label.text = [(NSDictionary*)[_info objectAtIndex:indexPath.row] valueForKey:@"titleNoFormatting"];
+	label.opaque = YES;
+	[cell.contentView addSubview:label];
 	
     return cell;
 }

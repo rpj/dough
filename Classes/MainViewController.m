@@ -98,6 +98,11 @@
 	}
 }
 
+- (void)navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item
+{
+	NSLog(@"navDidPopItem");
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) 
 	{
@@ -118,7 +123,6 @@
 	oFrame.origin.y = 0;
 	oFrame.size.height -= 44;
 	
-	NSLog(@"FRAME: %@", NSStringFromCGRect(oFrame));
 	UITableView* table = [[UITableView alloc] initWithFrame:oFrame style:UITableViewStylePlain];
 	_tableControl = [[TableController alloc] init];
 	
@@ -127,6 +131,8 @@
 	table.autoresizingMask = UIViewAutoresizingNone;
 	table.autoresizesSubviews = NO;
 	table.contentMode = UIViewContentModeRedraw;
+	table.backgroundColor = [UIColor blackColor];
+	table.separatorStyle = UITableViewCellSeparatorStyleNone;
 	
 	_tableControl.view = table;
 	[_tableView addSubview:table];
@@ -140,7 +146,7 @@
 	_tableControl.navController = _navControl;
 	
 	_navControl.navigationBar.topItem.title = @"Where?";
-	_navControl.navigationBar.tintColor = [UIColor darkGrayColor];
+	_navControl.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	_navControl.navigationBar.topItem.hidesBackButton = NO;
 	
 	_howMuchLabel.font = _methodLabel.font = [UIFont boldSystemFontOfSize:24];

@@ -16,6 +16,7 @@
 @implementation TableController
 
 @synthesize navController = _navControl;
+@synthesize tableView = _tv;
 
 - (void) notify:(NSNotification*)notify;
 {
@@ -53,6 +54,13 @@
 	}
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+	NSLog(@"DID APPEAR");
+	[_tv scrollToRowAtIndexPath:[_tv indexPathForSelectedRow] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
+	[super viewWillAppear:animated];
+}
+
 - (void) viewDidLoad;
 {
 	_placeTypes = [[NSMutableArray arrayWithObjects:@"Gas", @"Food", @"Coffee", @"Banking", @"Retail", @"Theatre", @"Hotels", nil] retain];
@@ -80,20 +88,25 @@
 	if (cell == nil)
 	{
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellID] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		cell.lineBreakMode = UILineBreakModeTailTruncation;
-		cell.selectionStyle = UITableViewCellSelectionStyleGray;
-		cell.opaque = YES;
-		
-		UILabel* label = (UILabel*)[cell.contentView.subviews objectAtIndex:0];
-		label.opaque = YES;
-		label.text = [_placeTypes objectAtIndex:indexPath.row];
 	}
 	else
 		[cell prepareForReuse];
 	
 	if (!_dataControl.hasData)
 		cell.accessoryType = UITableViewCellAccessoryNone;
+	
+	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	cell.lineBreakMode = UILineBreakModeTailTruncation;
+	cell.selectionStyle = UITableViewCellSelectionStyleGray;
+	cell.backgroundView = [[[UIView alloc] initWithFrame:cell.bounds] autorelease];
+	cell.backgroundView.backgroundColor = [UIColor blackColor];
+	cell.opaque = YES;
+	
+	UILabel* label = (UILabel*)[cell.contentView.subviews objectAtIndex:0];
+	label.textColor = [UIColor whiteColor];
+	label.text = [_placeTypes objectAtIndex:indexPath.row];
+	label.opaque = YES;
+	[cell.contentView addSubview:label];
 	
 	return cell;
 }

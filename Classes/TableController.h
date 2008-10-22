@@ -25,5 +25,6 @@
 }
 
 @property (nonatomic, retain) NavController* navController;
+@property (nonatomic, readonly) UITableView* tableView;
 
 @end
