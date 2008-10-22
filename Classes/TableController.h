@@ -10,7 +10,7 @@
 
 @class DataController, NavController;
 
-@interface TableController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface TableController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
 	NavController*							_navControl;
 	
 	DataController*							_dataControl;
@@ -18,6 +18,10 @@
 	
 	UITableView*							_tv;
 	NSString*								_query;
+	
+	BOOL									_fetchAfterLoc;
+	
+	CGRect									_givenFrame;
 }
 
 @property (nonatomic, retain) NavController* navController;

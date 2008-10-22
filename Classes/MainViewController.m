@@ -111,23 +111,32 @@
 }
 
 - (void)viewDidLoad {
-	_tableControl = [[TableController alloc] initWithStyle:UITableViewStylePlain];
+	_tableView.autoresizesSubviews = NO;
+	
+	CGRect oFrame = _tableView.frame;
+	oFrame.origin.x = 0;
+	oFrame.origin.y = 0;
+	oFrame.size.height -= 44;
+	
+	NSLog(@"FRAME: %@", NSStringFromCGRect(oFrame));
+	UITableView* table = [[UITableView alloc] initWithFrame:oFrame style:UITableViewStylePlain];
+	_tableControl = [[TableController alloc] init];
+	
+	table.delegate = _tableControl;
+	table.dataSource = _tableControl;
+	table.autoresizingMask = UIViewAutoresizingNone;
+	table.autoresizesSubviews = NO;
+	table.contentMode = UIViewContentModeRedraw;
+	
+	_tableControl.view = table;
+	[_tableView addSubview:table];
+	
 	_navControl = [[NavController alloc] initWithRootViewController:_tableControl];
-	
-	/*CGRect oFrame = _tableView.frame;
-	CGRect nFrame = _navControl.view.frame;
-	CGRect tFrame = _tableControl.tableView.frame;
-	
-	NSLog(@"tableView.frame: %@\tnavFrame: %@\ttFrame%@", NSStringFromCGRect(oFrame), NSStringFromCGRect(nFrame), NSStringFromCGRect(tFrame));
-	tFrame.size.height = oFrame.size.height - 44;
-	_tableControl.tableView.frame = tFrame;
-	NSLog(@"tFrame%@",  NSStringFromCGRect(_tableControl.tableView.frame));*/
-	_tableControl.tableView.bounces = NO;
-	_tableControl.tableView.scrollEnabled = YES;
-	_tableControl.tableView.scrollsToTop = NO;
-	_tableControl.tableView.indicatorStyle = UIScrollViewIndicatorStyleBlack;
-	
+	oFrame = _navControl.view.frame;
+	oFrame.origin.y = 0;
+	_navControl.view.frame = oFrame;
 	[_tableView addSubview:[_navControl view]];
+	
 	_tableControl.navController = _navControl;
 	
 	_navControl.navigationBar.topItem.title = @"Where?";
@@ -141,8 +150,8 @@
 	[_amountField addTarget:self action:@selector(editingChanged:) forControlEvents:UIControlEventEditingChanged];
 	
 	_methodControl.tintColor = [UIColor grayColor];
+	[_tableControl viewDidLoad];
 }
-
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	// Return YES for supported orientations

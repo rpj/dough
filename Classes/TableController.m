@@ -21,25 +21,32 @@
 {
 	if ([[notify name] isEqualToString:kStartingToLocateNotification])
 	{
-		_navControl.navigationBar.topItem.prompt = @"Locating you...";
+		_navControl.navigationBar.topItem.prompt = @"Locating you; please wait...";
 	}
 	else if ([[notify name] isEqualToString:kStartingToLoadNotification])
 	{
-		_navControl.navigationBar.topItem.prompt = @"Loading local data...";
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 	}
 	else
 	{
 		if ([[notify name] isEqualToString:kFinishedLoadingNotification] && _dataControl.hasData)
 		{
+			[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 			[_tv cellForRowAtIndexPath:[_tv indexPathForSelectedRow]].accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 			
 			DrillDownController* drillDown = [[DrillDownController alloc] initWithStyle:UITableViewStylePlain];
 			drillDown.detailInfo = _dataControl.dataStore;
+			drillDown.givenFrame = self.view.frame;
 			
 			[_navControl pushViewController:drillDown animated:YES];
 			_navControl.navigationBar.topItem.title = _query;
 			[drillDown release];
 		}
+		else if ([[notify name] isEqualToString:kFinishedLocatingNotification] && _fetchAfterLoc && _query) 
+		{
+			_fetchAfterLoc = ![_dataControl startLoadingLocalInfoWithQueryString:_query];
+		}
+			
 		
 		_navControl.navigationBar.topItem.prompt = nil;
 		_navControl.navigationBar.backItem.prompt = nil;
@@ -57,11 +64,16 @@
 	[ncent addObserver:self selector:@selector(notify:) name:kFinishedLoadingNotification object:nil];
 	
 	_dataControl = [[DataController alloc] init];
+	
 	_tv = (UITableView*)self.view;
+	_givenFrame = self.view.frame;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{	
+	if (_givenFrame.size.height != tableView.frame.size.height)
+		tableView.frame = _givenFrame;
+	
 	NSString* cellID = [NSString stringWithFormat:@"iPath(%@)", indexPath];
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID];
 	
@@ -98,15 +110,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+{	
 	if (indexPath.section == 0)
 	{
-		[_dataControl startLoadingLocalInfoWithQueryString:(_query = [_placeTypes objectAtIndex:indexPath.row])];
+		_fetchAfterLoc = ![_dataControl startLoadingLocalInfoWithQueryString:(_query = [_placeTypes objectAtIndex:indexPath.row])];
 	}
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	return 35.0;
 }
 @end

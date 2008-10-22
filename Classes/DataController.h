@@ -30,5 +30,5 @@
 @property (nonatomic, readonly, assign) NSArray* dataStore;
 @property (nonatomic, readonly, assign) CLLocation* latestLocation;
 
-- (void) startLoadingLocalInfoWithQueryString:(NSString*)query;
+- (BOOL) startLoadingLocalInfoWithQueryString:(NSString*)query;
 @end

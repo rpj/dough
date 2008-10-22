@@ -65,7 +65,7 @@
 	[super dealloc];
 }
 
-- (void) startLoadingLocalInfoWithQueryString:(NSString*)query;
+- (BOOL) startLoadingLocalInfoWithQueryString:(NSString*)query;
 {
 	if (_newestLoc && _canMakeRequest)
 	{
@@ -80,7 +80,11 @@
 		NSLog(@"Attempting request with URL: %@", url);
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 		[NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:url] delegate:self];
+		
+		return YES;
 	}
+	
+	return NO;
 }
 
 - (void)locationManager:(CLLocationManager *)manager 
