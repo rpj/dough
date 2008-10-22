@@ -10,6 +10,7 @@
 #import "DataController.h"
 #import "DrillDownController.h"
 #import "NavController.h"
+#import "DoughAppDelegate.h"
 
 #import <CoreGraphics/CoreGraphics.h>
 
@@ -53,6 +54,23 @@
 			
 		_navControl.navigationBar.topItem.prompt = nil;
 	}
+}
+
+- (void) needToSave:(NSNotification*) notify;
+{
+	NSLog(@"needToSave:");
+	[_dataControl sendEntries];
+}
+
+- (id) init;
+{
+	if ((self = [super init]))
+	{
+		NSLog(@"TCINIT");
+		[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(needToSave:) name:kNeedToSaveNotification object:nil];
+	}
+	
+	return self;
 }
 
 - (void) viewDidLoad;
