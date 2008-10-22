@@ -26,6 +26,7 @@
 		947F66D90EAE492F008DB1A4 /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 947F66D40EAE492F008DB1A4 /* DataController.m */; };
 		94809A190EAD3886001FEE0B /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94809A180EAD3886001FEE0B /* CoreLocation.framework */; };
 		94809B410EAD4F14001FEE0B /* DevIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 94809B400EAD4F14001FEE0B /* DevIcon.png */; };
+		949078B80EAF08CE006EE8A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 949078B70EAF08CE006EE8A3 /* Default.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -61,6 +62,7 @@
 		947F66D50EAE492F008DB1A4 /* DataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataController.h; path = Classes/DataController.h; sourceTree = "<group>"; };
 		94809A180EAD3886001FEE0B /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		94809B400EAD4F14001FEE0B /* DevIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevIcon.png; sourceTree = "<group>"; };
+		949078B70EAF08CE006EE8A3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +154,7 @@
 				280E754B0DD40C5E005A515E /* MainView.xib */,
 				280E754C0DD40C5E005A515E /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				949078B70EAF08CE006EE8A3 /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -235,6 +238,7 @@
 				280E754E0DD40C5E005A515E /* MainView.xib in Resources */,
 				280E754F0DD40C5E005A515E /* MainWindow.xib in Resources */,
 				94809B410EAD4F14001FEE0B /* DevIcon.png in Resources */,
+				949078B80EAF08CE006EE8A3 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

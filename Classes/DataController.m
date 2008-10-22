@@ -75,7 +75,8 @@
 		CLLocationCoordinate2D coord = _newestLoc.coordinate;
 		
 		NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:kGoogleLocalURLQueryString, 
-										   coord.latitude, coord.longitude, query]];
+										   coord.latitude, coord.longitude, 
+										   [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 		
 		NSLog(@"Attempting request with URL: %@", url);
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;

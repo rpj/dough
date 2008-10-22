@@ -22,7 +22,7 @@
 {
 	if ([[notify name] isEqualToString:kStartingToLocateNotification])
 	{
-		_navControl.navigationBar.topItem.prompt = @"Locating you; please wait...";
+		//_navControl.navigationBar.topItem.title = @"Locating you...";
 	}
 	else if ([[notify name] isEqualToString:kStartingToLoadNotification])
 	{
@@ -43,27 +43,23 @@
 			_navControl.navigationBar.topItem.title = _query;
 			[drillDown release];
 		}
-		else if ([[notify name] isEqualToString:kFinishedLocatingNotification] && _fetchAfterLoc && _query) 
+		else if ([[notify name] isEqualToString:kFinishedLocatingNotification])// && _fetchAfterLoc && _query) 
 		{
-			_fetchAfterLoc = ![_dataControl startLoadingLocalInfoWithQueryString:_query];
+			if (_fetchAfterLoc && _query)
+				_fetchAfterLoc = ![_dataControl startLoadingLocalInfoWithQueryString:_query];
+			
+			//_navControl.navigationBar.topItem.title = @"Where?";
 		}
 			
-		
 		_navControl.navigationBar.topItem.prompt = nil;
-		_navControl.navigationBar.backItem.prompt = nil;
 	}
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-	NSLog(@"DID APPEAR");
-	[_tv scrollToRowAtIndexPath:[_tv indexPathForSelectedRow] atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
-	[super viewWillAppear:animated];
 }
 
 - (void) viewDidLoad;
 {
-	_placeTypes = [[NSMutableArray arrayWithObjects:@"Gas", @"Food", @"Coffee", @"Banking", @"Retail", @"Theatre", @"Hotels", nil] retain];
+	_placeTypes = [[NSMutableArray arrayWithObjects:@"Gas", @"Food", @"Coffee", @"Banking", 
+					@"Shopping", @"Movie Theaters", @"Entertainment", @"Hotels", @"Bars", @"Nightlife",
+					@"Transportation", nil] retain];
 	
 	NSNotificationCenter* ncent = [NSNotificationCenter defaultCenter];
 	[ncent addObserver:self selector:@selector(notify:) name:kStartingToLocateNotification object:nil];
@@ -95,7 +91,7 @@
 	if (!_dataControl.hasData)
 		cell.accessoryType = UITableViewCellAccessoryNone;
 	
-	cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	cell.accessoryType = _dataControl.locationServicesEnabled ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
 	cell.lineBreakMode = UILineBreakModeTailTruncation;
 	cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	cell.backgroundView = [[[UIView alloc] initWithFrame:cell.bounds] autorelease];

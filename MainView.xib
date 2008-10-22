@@ -30,7 +30,7 @@
 					<object class="IBUILabel" id="469215128">
 						<reference key="NSNextResponder" ref="169245649"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 20}, {280, 39}}</string>
+						<string key="NSFrame">{{20, 27}, {280, 39}}</string>
 						<reference key="NSSuperview" ref="169245649"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -51,7 +51,7 @@
 					<object class="IBUILabel" id="809026034">
 						<reference key="NSNextResponder" ref="169245649"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 106}, {280, 39}}</string>
+						<string key="NSFrame">{{20, 116}, {280, 39}}</string>
 						<reference key="NSSuperview" ref="169245649"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -90,7 +90,6 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 158}, {280, 30}}</string>
 						<reference key="NSSuperview" ref="169245649"/>
-						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBSegmentControlStyle">2</int>
 						<int key="IBNumberOfSegments">4</int>
@@ -223,8 +222,8 @@
 							<reference ref="469215128"/>
 							<reference ref="7059131"/>
 							<reference ref="783290221"/>
-							<reference ref="809026034"/>
 							<reference ref="437073418"/>
+							<reference ref="809026034"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>

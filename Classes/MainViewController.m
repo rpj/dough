@@ -11,9 +11,7 @@
 #import "DoughAppDelegate.h"
 #import "NavController.h"
 #import "TableController.h"
-
-#define kLocatingString			@"Locating you..."
-#define kTitleKey				@"titleNoFormatting"
+#import "DataController.h"
 
 @implementation MainViewController
 
@@ -98,11 +96,6 @@
 	}
 }
 
-- (void)navigationBar:(UINavigationBar *)navigationBar didPopItem:(UINavigationItem *)item
-{
-	NSLog(@"navDidPopItem");
-}
-
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) 
 	{
@@ -113,6 +106,36 @@
 	}
 	
 	return self;
+}
+
+- (void) editingFinished:(id) sender;
+{
+	[_tableControl.tableView setEditing:NO animated:YES];
+	_navControl.navigationBar.topItem.leftBarButtonItem = nil;
+	_navControl.navigationBar.topItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit 
+																										  target:self
+																										  action:@selector(edit:)] autorelease];
+}
+
+- (void) add:(id)sender;
+{
+}
+
+- (void) edit:(id)sender;
+{
+	_navControl.navigationBar.topItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+																										 target:self 
+																										 action:@selector(editingFinished:)] autorelease];
+	
+	_navControl.navigationBar.topItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+																										  target:self 
+																										  action:@selector(add:)] autorelease];
+	[_tableControl.tableView setEditing:YES animated:YES];
+}
+
+- (void) locatedNotify:(NSNotification*)notify;
+{
+	//_navControl.navigationBar.topItem.rightBarButtonItem.enabled = YES;
 }
 
 - (void)viewDidLoad {
@@ -149,14 +172,22 @@
 	_navControl.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	_navControl.navigationBar.topItem.hidesBackButton = NO;
 	
-	_howMuchLabel.font = _methodLabel.font = [UIFont boldSystemFontOfSize:24];
+	UIBarButtonItem* bButt = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit 
+																			target:self
+																			action:@selector(edit:)] autorelease];
+	bButt.enabled = NO;
+	_navControl.navigationBar.topItem.rightBarButtonItem = bButt;
+	
+	_howMuchLabel.font = _methodLabel.font = [UIFont boldSystemFontOfSize:20];
 	
 	_amountField.font = [UIFont boldSystemFontOfSize:18];
 	[_amountField addTarget:self action:@selector(editingEnd:) forControlEvents:UIControlEventEditingDidEndOnExit];
 	[_amountField addTarget:self action:@selector(editingChanged:) forControlEvents:UIControlEventEditingChanged];
 	
-	_methodControl.tintColor = [UIColor grayColor];
+	_methodControl.tintColor = [UIColor darkGrayColor];
 	[_tableControl viewDidLoad];
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(locatedNotify:) name:kFinishedLocatingNotification object:nil];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
