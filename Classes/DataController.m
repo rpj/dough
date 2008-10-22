@@ -85,7 +85,6 @@
 										   coord.latitude, coord.longitude, 
 										   [query stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]]];
 		
-		NSLog(@"Attempting request with URL: %@", url);
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 		[NSURLConnection connectionWithRequest:[NSURLRequest requestWithURL:url] delegate:self];
 		

@@ -49,11 +49,8 @@
 
 - (void) editingEnd:(UITextField*)sender
 {
-	if ([[_amountField.text stringByTrimmingCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"$"]] doubleValue])
-	{
-		NSLog(@"value looks valid, allowing it");
-		_amountGiven = YES;
-	}
+	_amountGiven = (BOOL)[[_amountField.text stringByTrimmingCharactersInSet:
+						   [NSCharacterSet characterSetWithCharactersInString:@"$"]] doubleValue];
 }
 
 - (void) editingChanged:(UITextField*)sender

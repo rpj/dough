@@ -31,7 +31,8 @@
 						  sha1out);
 		
 		NSMutableString* shauid = [NSMutableString string];
-		for (; *sha1out; sha1out++)
+		uint8_t count = 0;
+		for (; count < CC_SHA1_DIGEST_LENGTH; sha1out++, count++)
 		{
 			[shauid appendFormat:@"%x", *sha1out];
 		}
