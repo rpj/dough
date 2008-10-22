@@ -26,5 +26,7 @@
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) RootViewController *rootViewController;
 
++ (NSString*) deviceSHA1;
+
 @end
 

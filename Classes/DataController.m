@@ -8,6 +8,7 @@
 
 #import "DataController.h"
 #import "DoughAppDelegate.h"
+
 #import <JSON/JSON.h>
 
 #define kGoogleLocalURLQueryString		@"http://ajax.googleapis.com/ajax/services/search/local?v=1.0&rsz=large&sll=%f,%f&q=%@"
@@ -200,13 +201,14 @@
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSArray* arr = [defaults objectForKey:@"entriesToPost"];
+	NSString* uid = [DoughAppDelegate deviceSHA1];
 	
-	if (arr && [arr count])
+	if (arr && [arr count] && uid)
 	{
 		NSString* body = [arr JSONRepresentation];
 		body = [self urlencode:body];
 		
-		NSString* reqBody = [NSString stringWithFormat:@"phid=%@&json=%@", [[UIDevice currentDevice] uniqueIdentifier], body];
+		NSString* reqBody = [NSString stringWithFormat:@"phid=%@&json=%@", uid, body];
 		NSMutableURLRequest* urlReq = [NSMutableURLRequest requestWithURL:
 									   [NSURL URLWithString:@"http://24.130.91.57/cgi-bin/doughTest.cgi"]];
 		

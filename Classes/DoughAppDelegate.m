@@ -9,12 +9,41 @@
 #import "DoughAppDelegate.h"
 #import "RootViewController.h"
 
-@implementation DoughAppDelegate
+#include <CommonCrypto/CommonDigest.h>
 
+@implementation DoughAppDelegate
 
 @synthesize window;
 @synthesize rootViewController;
 
++ (NSString*) deviceSHA1;
+{
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSString* retVal = nil;
+	
+	if (![defaults objectForKey:@"sha_uid"])
+	{
+		NSString* uid = [[UIDevice currentDevice] uniqueIdentifier];
+		
+		unsigned char* sha1out = (unsigned char*)malloc(CC_SHA1_DIGEST_LENGTH);
+		sha1out = CC_SHA1((const void*)[uid cStringUsingEncoding:NSASCIIStringEncoding],
+						  (CC_LONG)[uid lengthOfBytesUsingEncoding:NSASCIIStringEncoding],
+						  sha1out);
+		
+		NSMutableString* shauid = [NSMutableString string];
+		for (; *sha1out; sha1out++)
+		{
+			[shauid appendFormat:@"%x", *sha1out];
+		}
+		
+		[defaults setObject:shauid forKey:@"sha_uid"];
+		retVal = shauid;
+	}
+	else
+		retVal = [defaults objectForKey:@"sha_uid"];
+	
+	return retVal;
+}
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	[window addSubview:[rootViewController view]];
@@ -22,12 +51,15 @@
 	
 	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
 	
+	// ensure the user defaults has a SHA-1'ed version of the device's ID stored
+	[DoughAppDelegate deviceSHA1];
+	
+	/// check to see if there is any outstanding info to post
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	id toPost = [defaults objectForKey:@"entriesToPost"];
 	
 	if (toPost && [toPost isKindOfClass:[NSArray class]])
 	{
-		NSLog(@"Got dict we must post! %@", toPost);
 		[[NSNotificationCenter defaultCenter] postNotificationName:kNeedToSaveNotification object:self];
 		
 		[defaults removeObjectForKey:@"entriesToPost"];
