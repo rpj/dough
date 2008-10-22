@@ -154,7 +154,7 @@
 
 - (void) sendEntries;
 {
-	NSString* reqBody = [[NSString stringWithFormat:@"json=%@", @"somefuckingjsonshit"]
+	NSString* reqBody = [[NSString stringWithFormat:@"json=%@_%@", [[UIDevice currentDevice] uniqueIdentifier], [NSDate date]]
 						 stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
 	NSMutableURLRequest* urlReq = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:@"http://24.130.91.57/cgi-bin/doughTest.cgi"]];
 	
