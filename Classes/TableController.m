@@ -74,7 +74,6 @@
 	if (_concreteWhereInfo)
 	{
 		[dict setObject:_concreteWhereInfo forKey:@"concrete"];
-		[dict setObject:[_concreteWhereInfo objectForKey:@"titleNoFormatting"] forKey:@"concreteTitle"];
 	}
 	
 	return (NSDictionary*)dict;

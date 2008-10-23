@@ -9,7 +9,7 @@
 #import "DoughAppDelegate.h"
 #import "RootViewController.h"
 
-#include <CommonCrypto/CommonDigest.h>
+#import "NSString+Utils.h"
 
 @implementation DoughAppDelegate
 
@@ -23,22 +23,8 @@
 	
 	if (![defaults objectForKey:@"sha_uid"])
 	{
-		NSString* uid = [[UIDevice currentDevice] uniqueIdentifier];
-		
-		unsigned char* sha1out = (unsigned char*)malloc(CC_SHA1_DIGEST_LENGTH);
-		sha1out = CC_SHA1((const void*)[uid cStringUsingEncoding:NSASCIIStringEncoding],
-						  (CC_LONG)[uid lengthOfBytesUsingEncoding:NSASCIIStringEncoding],
-						  sha1out);
-		
-		NSMutableString* shauid = [NSMutableString string];
-		uint8_t count = 0;
-		for (; count < CC_SHA1_DIGEST_LENGTH; sha1out++, count++)
-		{
-			[shauid appendFormat:@"%x", *sha1out];
-		}
-		
-		[defaults setObject:shauid forKey:@"sha_uid"];
-		retVal = shauid;
+		NSString* uid = [[[UIDevice currentDevice] uniqueIdentifier] SHA1AsHex];
+		if (uid) [defaults setObject:(retVal = uid) forKey:@"sha_uid"];
 	}
 	else
 		retVal = [defaults objectForKey:@"sha_uid"];
@@ -61,9 +47,8 @@
 	
 	if (toPost && [toPost isKindOfClass:[NSArray class]])
 	{
+		NSLog(@"On startup, found %d entries needing to be posted.", [toPost count]);
 		[[NSNotificationCenter defaultCenter] postNotificationName:kNeedToSaveNotification object:self];
-		
-		[defaults removeObjectForKey:@"entriesToPost"];
 	}
 }
 

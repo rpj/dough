@@ -27,6 +27,7 @@
 		94809B410EAD4F14001FEE0B /* DevIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 94809B400EAD4F14001FEE0B /* DevIcon.png */; };
 		949078B80EAF08CE006EE8A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 949078B70EAF08CE006EE8A3 /* Default.png */; };
 		949079BB0EAF1720006EE8A3 /* DevIcon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 949079BA0EAF1720006EE8A3 /* DevIcon2.png */; };
+		94907D910EB010EE006EE8A3 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94907D900EB010EE006EE8A3 /* NSString+Utils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +63,8 @@
 		94809B400EAD4F14001FEE0B /* DevIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevIcon.png; sourceTree = "<group>"; };
 		949078B70EAF08CE006EE8A3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		949079BA0EAF1720006EE8A3 /* DevIcon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevIcon2.png; sourceTree = "<group>"; };
+		94907D8F0EB010EE006EE8A3 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Utils.h"; path = "Classes/NSString+Utils.h"; sourceTree = "<group>"; };
+		94907D900EB010EE006EE8A3 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Utils.m"; path = "Classes/NSString+Utils.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,8 @@
 			children = (
 				32CA4F630368D1EE00C91783 /* Dough_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
+				94907D8F0EB010EE006EE8A3 /* NSString+Utils.h */,
+				94907D900EB010EE006EE8A3 /* NSString+Utils.m */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -258,6 +263,7 @@
 				947F66D70EAE492F008DB1A4 /* DrillDownController.m in Sources */,
 				947F66D80EAE492F008DB1A4 /* TableController.m in Sources */,
 				947F66D90EAE492F008DB1A4 /* DataController.m in Sources */,
+				94907D910EB010EE006EE8A3 /* NSString+Utils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

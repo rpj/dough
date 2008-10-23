@@ -8,6 +8,7 @@
 
 #import "DataController.h"
 #import "DoughAppDelegate.h"
+#import "NSString+Utils.h"
 
 #import <JSON/JSON.h>
 
@@ -158,44 +159,6 @@
 	_canMakeRequest = YES;
 }
 
-//borrowed from http://mesh.typepad.com/blog/2007/10/url-encoding-wi.html
-//simple API that encodes reserved characters according to:
-//RFC 3986
-//http://tools.ietf.org/html/rfc3986
-- (NSString *) urlencode: (NSString *) url
-{
-    NSArray *escapeChars = [NSArray arrayWithObjects:@";" , @"/" , @"?" , @":" ,
-							@"@" , @"&" , @"=" , @"+" ,
-							@"$" , @"," , @"[" , @"]",
-							@"#", @"!", @"'", @"(", 
-							@")", @"*", nil];
-	
-    NSArray *replaceChars = [NSArray arrayWithObjects:@"%3B" , @"%2F" , @"%3F" ,
-							 @"%3A" , @"%40" , @"%26" ,
-							 @"%3D" , @"%2B" , @"%24" ,
-							 @"%2C" , @"%5B" , @"%5D", 
-							 @"%23", @"%21", @"%27",
-							 @"%28", @"%29", @"%2A", nil];
-	
-    int len = [escapeChars count];
-	
-    NSMutableString *temp = [url mutableCopy];
-	
-    int i;
-    for(i = 0; i < len; i++)
-    {
-		
-        [temp replaceOccurrencesOfString:[escapeChars objectAtIndex:i]
-							  withString:[replaceChars objectAtIndex:i]
-								 options:NSLiteralSearch
-								   range:NSMakeRange(0, [temp length])];
-    }
-	
-    NSString *out = [NSString stringWithString: temp];
-	
-    return out;
-}
-
 - (void) sendEntries:(id)arg;
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
@@ -205,9 +168,9 @@
 	if (arr && [arr count] && uid)
 	{
 		NSString* body = [arr JSONRepresentation];
-		body = [self urlencode:body];
+		NSString* sha1 = [body SHA1AsHex];
 		
-		NSString* reqBody = [NSString stringWithFormat:@"phid=%@&json=%@", uid, body];
+		NSString* reqBody = [NSString stringWithFormat:@"phid=%@&sha=%@&json=%@", uid, sha1, [body URLEncode]];
 		NSMutableURLRequest* urlReq = [NSMutableURLRequest requestWithURL:
 									   [NSURL URLWithString:@"http://24.130.91.57/cgi-bin/doughTest.cgi"]];
 		
@@ -221,7 +184,14 @@
 		
 		if (retData)
 		{
-			[defaults removeObjectForKey:@"entriesToPost"];
+			if (![retData length])
+			{
+				[defaults removeObjectForKey:@"entriesToPost"];
+			}
+			else
+			{
+				NSLog(@"ERROR: \n%@\n", [NSString stringWithCString:[retData bytes] length:[retData length]]);
+			}
 		}
 		else
 		{
