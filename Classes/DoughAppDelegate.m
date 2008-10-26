@@ -16,12 +16,59 @@
 @synthesize window;
 @synthesize rootViewController;
 
+//////
+- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+{
+	if ([response expectedContentLength] != NSURLResponseUnknownLength)
+		_tempLoadData = [[NSMutableData alloc] initWithCapacity:[response expectedContentLength]];
+}
+
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+	if (_tempLoadData) [_tempLoadData appendData:data];
+}
+
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection
+{
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+	
+	NSString* strData = [[NSString alloc] initWithBytes:[_tempLoadData bytes] length:[_tempLoadData length] encoding:NSUTF8StringEncoding];
+	
+	if ([strData isEqualToString:@"Success"] || [strData isEqualToString:@"Exists"])
+	{
+		NSLog(@"Device registered: %@", strData);
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:kDoughDeviceRegisteredDefaultsKey];
+	}
+	
+	[strData release];
+	[_tempLoadData release];
+	_tempLoadData = nil;
+}
+
+- (void) checkForAndRegisterDevice;
+{	
+	NSString* reqBody = [NSString stringWithFormat:@"act=nu&phid=%@", [DoughAppDelegate deviceSHA1]];
+	NSMutableURLRequest* urlReq = [NSMutableURLRequest requestWithURL:
+								   [NSURL URLWithString:@"http://24.130.91.57/cgi-bin/doughTest.cgi"]];
+	
+	[urlReq setHTTPMethod:@"POST"];
+	[urlReq setHTTPShouldHandleCookies:NO];
+	[urlReq setHTTPBody:[NSData dataWithBytes:[reqBody cStringUsingEncoding:NSASCIIStringEncoding]
+									   length:[reqBody lengthOfBytesUsingEncoding:NSASCIIStringEncoding]]];
+	
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	[NSURLConnection connectionWithRequest:urlReq delegate:self];
+}
+
+//////
+
+
 + (NSString*) deviceSHA1;
 {
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSString* retVal = nil;
+	static NSString* retVal = nil;
 	
-	if (![defaults objectForKey:@"sha_uid"])
+	if (!retVal && ![defaults objectForKey:@"sha_uid"])
 	{
 		NSString* uid = [[[UIDevice currentDevice] uniqueIdentifier] SHA1AsHex];
 		if (uid) [defaults setObject:(retVal = uid) forKey:@"sha_uid"];
@@ -43,7 +90,10 @@
 	
 	/// check to see if there is any outstanding info to post
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	id toPost = [defaults objectForKey:@"entriesToPost"];
+	id toPost = [defaults objectForKey:kDoughEntriesDefaultsKey];
+	
+	if (![defaults boolForKey:kDoughDeviceRegisteredDefaultsKey])
+		[self checkForAndRegisterDevice];
 	
 	if (toPost && [toPost isKindOfClass:[NSArray class]])
 	{

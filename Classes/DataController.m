@@ -95,6 +95,47 @@
 	return NO;
 }
 
+- (void) sendEntries:(id)arg;
+{
+	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
+	NSArray* arr = [defaults objectForKey:kDoughEntriesDefaultsKey];
+	NSString* uid = [DoughAppDelegate deviceSHA1];
+	
+	if (arr && [arr count] && uid)
+	{
+		NSString* body = [arr JSONRepresentation];
+		NSString* sha1 = [body SHA1AsHex];
+		
+		NSString* reqBody = [NSString stringWithFormat:@"act=ta&phid=%@&sha=%@&json=%@", uid, sha1, [body URLEncode]];
+		NSMutableURLRequest* urlReq = [NSMutableURLRequest requestWithURL:
+									   [NSURL URLWithString:@"http://24.130.91.57/cgi-bin/doughTest.cgi"]];
+		
+		[urlReq setHTTPMethod:@"POST"];
+		[urlReq setHTTPShouldHandleCookies:NO];
+		[urlReq setHTTPBody:[NSData dataWithBytes:[reqBody cStringUsingEncoding:NSASCIIStringEncoding]
+										   length:[reqBody lengthOfBytesUsingEncoding:NSASCIIStringEncoding]]];
+		
+		NSURLResponse* resp = nil;
+		NSData* retData = [NSURLConnection sendSynchronousRequest:urlReq returningResponse:&resp error:nil]; 
+		
+		if (retData)
+		{
+			if (![retData length])
+			{
+				[defaults removeObjectForKey:kDoughEntriesDefaultsKey];
+			}
+			else
+			{
+				NSLog(@"ERROR: \n%@\n", [NSString stringWithCString:[retData bytes] length:[retData length]]);
+			}
+		}
+		else
+		{
+			NSLog(@"URL send was unsuccessful! Leaving object in defaults until next time...");
+		}
+	}
+}
+
 - (void)locationManager:(CLLocationManager *)manager 
 	didUpdateToLocation:(CLLocation *)newLocation 
 		   fromLocation:(CLLocation *)oldLocation
@@ -161,46 +202,5 @@
 	[_tempLoadData release];
 	_tempLoadData = nil;
 	_canMakeRequest = YES;
-}
-
-- (void) sendEntries:(id)arg;
-{
-	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
-	NSArray* arr = [defaults objectForKey:@"entriesToPost"];
-	NSString* uid = [DoughAppDelegate deviceSHA1];
-	
-	if (arr && [arr count] && uid)
-	{
-		NSString* body = [arr JSONRepresentation];
-		NSString* sha1 = [body SHA1AsHex];
-		
-		NSString* reqBody = [NSString stringWithFormat:@"phid=%@&sha=%@&json=%@", uid, sha1, [body URLEncode]];
-		NSMutableURLRequest* urlReq = [NSMutableURLRequest requestWithURL:
-									   [NSURL URLWithString:@"http://24.130.91.57/cgi-bin/doughTest.cgi"]];
-		
-		[urlReq setHTTPMethod:@"POST"];
-		[urlReq setHTTPShouldHandleCookies:NO];
-		[urlReq setHTTPBody:[NSData dataWithBytes:[reqBody cStringUsingEncoding:NSASCIIStringEncoding]
-										   length:[reqBody lengthOfBytesUsingEncoding:NSASCIIStringEncoding]]];
-		
-		NSURLResponse* resp = nil;
-		NSData* retData = [NSURLConnection sendSynchronousRequest:urlReq returningResponse:&resp error:nil]; 
-		
-		if (retData)
-		{
-			if (![retData length])
-			{
-				[defaults removeObjectForKey:@"entriesToPost"];
-			}
-			else
-			{
-				NSLog(@"ERROR: \n%@\n", [NSString stringWithCString:[retData bytes] length:[retData length]]);
-			}
-		}
-		else
-		{
-			NSLog(@"URL send was unsuccessful! Leaving object in defaults until next time...");
-		}
-	}
 }
 @end

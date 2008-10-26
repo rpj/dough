@@ -38,7 +38,7 @@
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">BG3.png</string>
+							<string key="NSResourceName">BG4.png</string>
 						</object>
 					</object>
 					<object class="IBUILabel" id="469215128">

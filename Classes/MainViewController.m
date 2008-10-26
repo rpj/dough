@@ -23,8 +23,8 @@
 		NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 		NSMutableArray* writeArr = [NSMutableArray array];
 		
-		if ([defaults objectForKey:@"entriesToPost"])
-			[writeArr addObjectsFromArray:(NSArray*)[defaults objectForKey:@"entriesToPost"]];
+		if ([defaults objectForKey:kDoughEntriesDefaultsKey])
+			[writeArr addObjectsFromArray:(NSArray*)[defaults objectForKey:kDoughEntriesDefaultsKey]];
 		
 		NSMutableDictionary* dict = [NSMutableDictionary dictionary];
 		
@@ -40,7 +40,7 @@
 		[dict setObject:[_tableControl dictionaryForSelection] forKey:@"where"];
 		
 		[writeArr addObject:dict];
-		[defaults setObject:writeArr forKey:@"entriesToPost"];
+		[defaults setObject:writeArr forKey:kDoughEntriesDefaultsKey];
 	}
 	
 	[[NSNotificationCenter defaultCenter] postNotificationName:kSendToWebNowNotification object:self];
@@ -67,7 +67,7 @@
 	{
 		updatingText = YES;
 		
-		if ([_amountField.text characterAtIndex:0] != '$')
+		if ([_amountField.text length] && [_amountField.text characterAtIndex:0] != '$')
 		{
 			_amountField.text = [NSString stringWithFormat:@"$%@", _amountField.text];
 		}

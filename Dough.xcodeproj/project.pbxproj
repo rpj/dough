@@ -31,6 +31,9 @@
 		94907EA80EB2EEC2006EE8A3 /* BG.png in Resources */ = {isa = PBXBuildFile; fileRef = 94907EA70EB2EEC2006EE8A3 /* BG.png */; };
 		94907EBE0EB2F14C006EE8A3 /* BG2.png in Resources */ = {isa = PBXBuildFile; fileRef = 94907EBD0EB2F14C006EE8A3 /* BG2.png */; };
 		94907F820EB3F16D006EE8A3 /* BG4.png in Resources */ = {isa = PBXBuildFile; fileRef = 94907F810EB3F16D006EE8A3 /* BG4.png */; };
+		94907FAA0EB40FCD006EE8A3 /* BG3.png in Resources */ = {isa = PBXBuildFile; fileRef = 94907FA90EB40FCD006EE8A3 /* BG3.png */; };
+		94907FAD0EB4106D006EE8A3 /* BG5.png in Resources */ = {isa = PBXBuildFile; fileRef = 94907FAC0EB4106D006EE8A3 /* BG5.png */; };
+		94907FC90EB41891006EE8A3 /* doughTest.cgi in Resources */ = {isa = PBXBuildFile; fileRef = 94907FC80EB41891006EE8A3 /* doughTest.cgi */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +74,9 @@
 		94907EA70EB2EEC2006EE8A3 /* BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG.png; sourceTree = "<group>"; };
 		94907EBD0EB2F14C006EE8A3 /* BG2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG2.png; sourceTree = "<group>"; };
 		94907F810EB3F16D006EE8A3 /* BG4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG4.png; sourceTree = "<group>"; };
+		94907FA90EB40FCD006EE8A3 /* BG3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG3.png; sourceTree = "<group>"; };
+		94907FAC0EB4106D006EE8A3 /* BG5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG5.png; sourceTree = "<group>"; };
+		94907FC80EB41891006EE8A3 /* doughTest.cgi */ = {isa = PBXFileReference; explicitFileType = text.script.perl; fileEncoding = 4; name = doughTest.cgi; path = doughweb/doughTest.cgi; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,7 @@
 		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				94907FC70EB41880006EE8A3 /* Web */,
 				32CA4F630368D1EE00C91783 /* Dough_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				94907D8F0EB010EE006EE8A3 /* NSString+Utils.h */,
@@ -159,6 +166,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				94907FAC0EB4106D006EE8A3 /* BG5.png */,
+				94907FA90EB40FCD006EE8A3 /* BG3.png */,
 				94907F810EB3F16D006EE8A3 /* BG4.png */,
 				94907EBD0EB2F14C006EE8A3 /* BG2.png */,
 				94907EA70EB2EEC2006EE8A3 /* BG.png */,
@@ -195,6 +204,14 @@
 				947F66D40EAE492F008DB1A4 /* DataController.m */,
 			);
 			name = "Table and Data";
+			sourceTree = "<group>";
+		};
+		94907FC70EB41880006EE8A3 /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				94907FC80EB41891006EE8A3 /* doughTest.cgi */,
+			);
+			name = Web;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,6 +272,9 @@
 				94907EA80EB2EEC2006EE8A3 /* BG.png in Resources */,
 				94907EBE0EB2F14C006EE8A3 /* BG2.png in Resources */,
 				94907F820EB3F16D006EE8A3 /* BG4.png in Resources */,
+				94907FAA0EB40FCD006EE8A3 /* BG3.png in Resources */,
+				94907FAD0EB4106D006EE8A3 /* BG5.png in Resources */,
+				94907FC90EB41891006EE8A3 /* doughTest.cgi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
