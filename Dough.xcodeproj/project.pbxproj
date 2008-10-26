@@ -28,6 +28,9 @@
 		949078B80EAF08CE006EE8A3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 949078B70EAF08CE006EE8A3 /* Default.png */; };
 		949079BB0EAF1720006EE8A3 /* DevIcon2.png in Resources */ = {isa = PBXBuildFile; fileRef = 949079BA0EAF1720006EE8A3 /* DevIcon2.png */; };
 		94907D910EB010EE006EE8A3 /* NSString+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 94907D900EB010EE006EE8A3 /* NSString+Utils.m */; };
+		94907EA80EB2EEC2006EE8A3 /* BG.png in Resources */ = {isa = PBXBuildFile; fileRef = 94907EA70EB2EEC2006EE8A3 /* BG.png */; };
+		94907EBE0EB2F14C006EE8A3 /* BG2.png in Resources */ = {isa = PBXBuildFile; fileRef = 94907EBD0EB2F14C006EE8A3 /* BG2.png */; };
+		94907F820EB3F16D006EE8A3 /* BG4.png in Resources */ = {isa = PBXBuildFile; fileRef = 94907F810EB3F16D006EE8A3 /* BG4.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +68,9 @@
 		949079BA0EAF1720006EE8A3 /* DevIcon2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DevIcon2.png; sourceTree = "<group>"; };
 		94907D8F0EB010EE006EE8A3 /* NSString+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+Utils.h"; path = "Classes/NSString+Utils.h"; sourceTree = "<group>"; };
 		94907D900EB010EE006EE8A3 /* NSString+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+Utils.m"; path = "Classes/NSString+Utils.m"; sourceTree = "<group>"; };
+		94907EA70EB2EEC2006EE8A3 /* BG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG.png; sourceTree = "<group>"; };
+		94907EBD0EB2F14C006EE8A3 /* BG2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG2.png; sourceTree = "<group>"; };
+		94907F810EB3F16D006EE8A3 /* BG4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG4.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +159,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				94907F810EB3F16D006EE8A3 /* BG4.png */,
+				94907EBD0EB2F14C006EE8A3 /* BG2.png */,
+				94907EA70EB2EEC2006EE8A3 /* BG.png */,
 				949079BA0EAF1720006EE8A3 /* DevIcon2.png */,
 				94809B400EAD4F14001FEE0B /* DevIcon.png */,
 				280E754A0DD40C5E005A515E /* FlipsideView.xib */,
@@ -243,6 +252,9 @@
 				94809B410EAD4F14001FEE0B /* DevIcon.png in Resources */,
 				949078B80EAF08CE006EE8A3 /* Default.png in Resources */,
 				949079BB0EAF1720006EE8A3 /* DevIcon2.png in Resources */,
+				94907EA80EB2EEC2006EE8A3 /* BG.png in Resources */,
+				94907EBE0EB2F14C006EE8A3 /* BG2.png in Resources */,
+				94907F820EB3F16D006EE8A3 /* BG4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

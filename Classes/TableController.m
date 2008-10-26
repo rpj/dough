@@ -162,7 +162,15 @@
 {	
 	if (indexPath.section == 0)
 	{
+		NSString* pString = nil;
+		
+		if (!_dataControl.latestLocation)
+			pString = @"Locating you...";
+		
 		_fetchAfterLoc = ![_dataControl startLoadingLocalInfoWithQueryString:(_query = [_placeTypes objectAtIndex:indexPath.row])];
+		
+		if (pString)
+			_navControl.navigationBar.topItem.prompt = pString;
 	}
 }
 @end

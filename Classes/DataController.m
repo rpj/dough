@@ -99,7 +99,7 @@
 	didUpdateToLocation:(CLLocation *)newLocation 
 		   fromLocation:(CLLocation *)oldLocation
 {
-	if (manager == _locMgr)
+	if (manager == _locMgr && [[NSDate date] timeIntervalSinceDate:newLocation.timestamp] < 10)
 	{
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 		[_locMgr stopUpdatingLocation];
@@ -109,6 +109,10 @@
 		
 		[_dataStore removeAllObjects];
 		[[NSNotificationCenter defaultCenter] postNotificationName:kFinishedLocatingNotification object:self];
+	}
+	else
+	{
+		NSLog(@"Might have gotten a cached location, still trying... %@", newLocation.timestamp);
 	}
 }
 

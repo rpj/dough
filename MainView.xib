@@ -27,6 +27,20 @@
 				<int key="NSvFlags">292</int>
 				<object class="NSMutableArray" key="NSSubviews">
 					<bool key="EncodedWithXMLCoder">YES</bool>
+					<object class="IBUIImageView" id="265757193">
+						<reference key="NSNextResponder" ref="169245649"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrameSize">{320, 240}</string>
+						<reference key="NSSuperview" ref="169245649"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<int key="IBUIContentMode">4</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">BG3.png</string>
+						</object>
+					</object>
 					<object class="IBUILabel" id="469215128">
 						<reference key="NSNextResponder" ref="169245649"/>
 						<int key="NSvFlags">292</int>
@@ -90,6 +104,10 @@
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 169}, {280, 30}}</string>
 						<reference key="NSSuperview" ref="169245649"/>
+						<object class="NSColor" key="IBUIBackgroundColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MSAxIDEgMC4yNQA</bytes>
+						</object>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBSegmentControlStyle">2</int>
 						<int key="IBNumberOfSegments">4</int>
@@ -222,8 +240,9 @@
 							<reference ref="469215128"/>
 							<reference ref="7059131"/>
 							<reference ref="783290221"/>
-							<reference ref="437073418"/>
 							<reference ref="809026034"/>
+							<reference ref="265757193"/>
+							<reference ref="437073418"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -260,6 +279,11 @@
 						</object>
 						<reference key="parent" ref="169245649"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">65</int>
+						<reference key="object" ref="265757193"/>
+						<reference key="parent" ref="169245649"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -276,6 +300,7 @@
 					<string>44.IBPluginDependency</string>
 					<string>46.IBPluginDependency</string>
 					<string>48.IBPluginDependency</string>
+					<string>65.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
 					<bool key="EncodedWithXMLCoder">YES</bool>
@@ -283,6 +308,7 @@
 					<string>UIResponder</string>
 					<string>MainView</string>
 					<string>{{440, 370}, {320, 460}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -311,7 +337,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">64</int>
+			<int key="maxID">65</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">

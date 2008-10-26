@@ -13,6 +13,7 @@
 	IBOutlet CLLocationManager*		_locMgr;
 	
 	CLLocation*						_newestLoc;
+	CLLocation*						_oldLoc;
 	
 	NSMutableArray*					_dataStore;
 	

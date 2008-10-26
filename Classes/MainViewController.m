@@ -177,6 +177,7 @@
 	_howMuchLabel.font = _methodLabel.font = [UIFont boldSystemFontOfSize:20];
 	
 	_amountField.font = [UIFont boldSystemFontOfSize:18];
+	_amountField.backgroundColor = _methodControl.backgroundColor = [UIColor clearColor];
 	[_amountField addTarget:self action:@selector(editingEnd:) forControlEvents:UIControlEventEditingDidEndOnExit];
 	[_amountField addTarget:self action:@selector(editingChanged:) forControlEvents:UIControlEventEditingChanged];
 	
