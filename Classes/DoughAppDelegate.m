@@ -19,8 +19,7 @@
 //////
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-	if ([response expectedContentLength] != NSURLResponseUnknownLength)
-		_tempLoadData = [[NSMutableData alloc] initWithCapacity:[response expectedContentLength]];
+	_tempLoadData = [[NSMutableData alloc] init];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
@@ -32,15 +31,18 @@
 {
 	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
 	
-	NSString* strData = [[NSString alloc] initWithBytes:[_tempLoadData bytes] length:[_tempLoadData length] encoding:NSUTF8StringEncoding];
-	
-	if ([strData isEqualToString:@"Success"] || [strData isEqualToString:@"Exists"])
-	{
-		NSLog(@"Device registered: %@", strData);
+	if (![_tempLoadData length])
 		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:kDoughDeviceRegisteredDefaultsKey];
+	else
+	{
+		NSString* strData = [[NSString alloc] initWithBytes:[_tempLoadData bytes] 
+													 length:[_tempLoadData length] 
+												   encoding:NSUTF8StringEncoding];
+		
+		NSLog(@"Registration error: %@", strData);
+		[strData release];
 	}
 	
-	[strData release];
 	[_tempLoadData release];
 	_tempLoadData = nil;
 }

@@ -46,40 +46,10 @@
 						<float key="IBUIMinimumFontSize">7.000000e+00</float>
 						<int key="IBUITextAlignment">1</int>
 					</object>
-					<object class="IBUISwitch" id="38274880">
-						<reference key="NSNextResponder" ref="242216480"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{206, 78}, {94, 27}}</string>
-						<reference key="NSSuperview" ref="242216480"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<bool key="IBUIMultipleTouchEnabled">YES</bool>
-						<bool key="IBUIEnabled">NO</bool>
-						<int key="IBUIContentHorizontalAlignment">0</int>
-						<int key="IBUIContentVerticalAlignment">0</int>
-					</object>
-					<object class="IBUILabel" id="909309765">
-						<reference key="NSNextResponder" ref="242216480"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 81}, {178, 21}}</string>
-						<reference key="NSSuperview" ref="242216480"/>
-						<bool key="IBUIOpaque">NO</bool>
-						<bool key="IBUIClipsSubviews">YES</bool>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="IBUIText">Submit Immediately:</string>
-						<object class="NSColor" key="IBUITextColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC45MDE5NjA3OSAwLjkwMTk2MDc5IDAuOTAxOTYwNzkAA</bytes>
-						</object>
-						<nil key="IBUIHighlightedColor"/>
-						<int key="IBUIBaselineAdjustment">1</int>
-						<float key="IBUIMinimumFontSize">1.000000e+01</float>
-						<int key="IBUITextAlignment">1</int>
-					</object>
 					<object class="IBUILabel" id="508007604">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 144}, {280, 21}}</string>
+						<string key="NSFrame">{{20, 53}, {280, 21}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -97,7 +67,7 @@
 					<object class="IBUITextField" id="1005458063">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 173}, {280, 31}}</string>
+						<string key="NSFrame">{{20, 82}, {280, 31}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -122,7 +92,7 @@
 					<object class="IBUITextField" id="644983154">
 						<reference key="NSNextResponder" ref="242216480"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{20, 212}, {280, 31}}</string>
+						<string key="NSFrame">{{20, 121}, {280, 31}}</string>
 						<reference key="NSSuperview" ref="242216480"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
@@ -191,8 +161,6 @@
 							<reference ref="508007604"/>
 							<reference ref="1005458063"/>
 							<reference ref="644983154"/>
-							<reference ref="38274880"/>
-							<reference ref="909309765"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 						<string key="objectName">Flipside View</string>
@@ -205,16 +173,6 @@
 					<object class="IBObjectRecord">
 						<int key="objectID">40</int>
 						<reference key="object" ref="84829384"/>
-						<reference key="parent" ref="242216480"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">41</int>
-						<reference key="object" ref="38274880"/>
-						<reference key="parent" ref="242216480"/>
-					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">42</int>
-						<reference key="object" ref="909309765"/>
 						<reference key="parent" ref="242216480"/>
 					</object>
 					<object class="IBObjectRecord">
@@ -244,8 +202,6 @@
 					<string>4.IBEditorWindowLastContentRect</string>
 					<string>4.IBPluginDependency</string>
 					<string>40.IBPluginDependency</string>
-					<string>41.IBPluginDependency</string>
-					<string>42.IBPluginDependency</string>
 					<string>43.IBPluginDependency</string>
 					<string>45.IBPluginDependency</string>
 					<string>46.IBPluginDependency</string>
@@ -256,8 +212,6 @@
 					<string>UIResponder</string>
 					<string>FlipsideView</string>
 					<string>{{442, 375}, {320, 460}}</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
