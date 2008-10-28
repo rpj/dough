@@ -109,10 +109,10 @@
 		NSString* sha1 = [body SHA1AsHex];
 		
 		NSURLResponse* resp = nil;
-		NSData* retData = [WebConnection sendSynchronousRequest:
+		NSData* retData = [WebConnection sendSynchronousDoughRequest:
 						   [NSString stringWithFormat:@"act=ta&phid=%@&sha=%@&json=%@", uid, sha1, [body URLEncode]]
-											  returningResponse:&resp
-														  error:nil];
+												   returningResponse:&resp
+															   error:nil];
 		
 		if (retData)
 		{

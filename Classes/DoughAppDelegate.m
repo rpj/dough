@@ -31,9 +31,9 @@
 
 - (void) checkForAndRegisterDevice;
 {	
-	[[[WebConnection alloc] init] sendRequest:[NSString stringWithFormat:@"act=nu&phid=%@", [DoughAppDelegate deviceSHA1]] 
-								  endSelector:@selector(webConnEnded:withError:)
-								 targetObject:self];
+	[WebConnection sendDoughRequest:[NSString stringWithFormat:@"act=nu&phid=%@", [DoughAppDelegate deviceSHA1]] 
+						endSelector:@selector(webConnEnded:withError:)
+					   targetObject:self];
 }
 
 //////

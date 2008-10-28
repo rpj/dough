@@ -109,11 +109,6 @@
 	return urlReq;
 }
 
-+ (NSData*) sendSynchronousRequest:(NSString*)request returningResponse:(NSURLResponse**)resp error:(NSError**)err;
-{
-	return [NSURLConnection sendSynchronousRequest:[self _prepareURLRequest:request] returningResponse:resp error:err];
-}
-
 - (void) _fireQuery:(id)arg;
 {
 	NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
@@ -133,7 +128,7 @@
 	[pool release];
 }
 
-- (void) sendRequest:(NSString*)request endSelector:(SEL)endSel targetObject:(id)obj;
+- (void) _sendDoughRequest:(NSString*)request endSelector:(SEL)endSel targetObject:(id)obj;
 {
 	if (request && endSel && obj)
 	{
@@ -142,5 +137,16 @@
 		
 		[NSThread detachNewThreadSelector:@selector(_fireQuery:) toTarget:self withObject:request];
 	}
+}
+
++ (void) sendDoughRequest:(NSString*)request endSelector:(SEL)endSel targetObject:(id)obj;
+{
+	WebConnection* conn = [[[WebConnection alloc] init] autorelease];
+	[conn _sendDoughRequest:request endSelector:endSel targetObject:obj];
+}
+
++ (NSData*) sendSynchronousDoughRequest:(NSString*)request returningResponse:(NSURLResponse**)resp error:(NSError**)err;
+{
+	return [NSURLConnection sendSynchronousRequest:[self _prepareURLRequest:request] returningResponse:resp error:err];
 }
 @end

@@ -24,7 +24,6 @@
 @property (nonatomic, readonly) NSData* loadedData;
 @property (nonatomic, readonly) NSString* loadedString;
 
-- (void) sendRequest:(NSString*)request endSelector:(SEL)endSel targetObject:(id)obj;
-
-+ (NSData*) sendSynchronousRequest:(NSString*)request returningResponse:(NSURLResponse**)resp error:(NSError**)err;
++ (void) sendDoughRequest:(NSString*)request endSelector:(SEL)endSel targetObject:(id)obj;
++ (NSData*) sendSynchronousDoughRequest:(NSString*)request returningResponse:(NSURLResponse**)resp error:(NSError**)err;
 @end
