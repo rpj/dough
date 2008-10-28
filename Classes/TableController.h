@@ -11,7 +11,7 @@
 
 @class DataController, NavController;
 
-@interface TableController : UIViewController <UITableViewDelegate, UITableViewDataSource> {
+@interface TableController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIAlertViewDelegate> {
 	UINavigationController*					_navControl;
 	
 	DataController*							_dataControl;

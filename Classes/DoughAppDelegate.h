@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 #define kNeedToSaveNotification				@"kDoughNeedToSaveNotification"
+#define kSaveOperationEndedNotification		@"kDoughSaveOperationEndedNotification"
+#define kSaveWasSuccessfulNotification		@"kDoughSaveWasSuccessfulNotification"
 #define kSendToWebNowNotification			@"kDoughSendToWebNowNotification"
 #define kDrillDownSelectNotification		@"kDoughDrillDownSelectNotification"
 #define kStartingToLocateNotification		@"kDoughDataControllerStartingToLocate"

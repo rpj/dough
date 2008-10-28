@@ -93,8 +93,8 @@
 - (void) viewDidLoad;
 {
 	_placeTypes = [[NSMutableArray arrayWithObjects:@"Gas", @"Food", @"Coffee", @"Banking", 
-					@"Shopping", @"Movie Theaters", @"Entertainment", @"Hotels", @"Bars", @"Nightlife",
-					@"Transportation", nil] retain];
+					@"Shopping", @"Grocery", @"Utility", @"Movie Theaters", @"Entertainment", 
+					@"Hotels", @"Bars", @"Nightlife", @"Transportation", @"Custom Search...", nil] retain];
 	
 	NSNotificationCenter* ncent = [NSNotificationCenter defaultCenter];
 	
@@ -158,19 +158,55 @@
 	return 0;
 }
 
+/// for UIAlertViewDelegate
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex == 1)
+	{
+		UITextField* search = (UITextField*)[alertView.subviews objectAtIndex:0];
+		[_dataControl startLoadingLocalInfoWithQueryString:search.text];
+		[search removeFromSuperview];
+		[search release];
+	}
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {	
 	if (indexPath.section == 0)
 	{
-		NSString* pString = nil;
-		
-		if (!_dataControl.latestLocation)
-			pString = @"Locating you...";
-		
-		_fetchAfterLoc = ![_dataControl startLoadingLocalInfoWithQueryString:(_query = [_placeTypes objectAtIndex:indexPath.row])];
+		if (indexPath.row == ([_placeTypes count] - 1))
+		{
+			UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Search Google Local:" 
+																  message:@" " 
+																 delegate:self 
+														cancelButtonTitle:@"Cancel" 
+														otherButtonTitles:@"Search", nil];
+			UITextField *myTextField = [[UITextField alloc] initWithFrame:CGRectMake(12.0, 45.0, 260.0, 25.0)];
 			
-		if (pString)
-			_navControl.navigationBar.topItem.prompt = pString;
+			myTextField.font = [UIFont boldSystemFontOfSize:18];
+			[myTextField setBackgroundColor:[UIColor whiteColor]];
+			[myAlertView insertSubview:myTextField atIndex:0];
+			
+			CGAffineTransform myTransform = CGAffineTransformMakeTranslation(0.0, 130.0);
+			[myAlertView setTransform:myTransform];
+			
+			[myAlertView show];
+			[myTextField becomeFirstResponder];
+			[myAlertView release];
+			
+		}
+		else
+		{
+			NSString* pString = nil;
+			
+			if (!_dataControl.latestLocation)
+				pString = @"Locating you...";
+			
+			_fetchAfterLoc = ![_dataControl startLoadingLocalInfoWithQueryString:(_query = [_placeTypes objectAtIndex:indexPath.row])];
+			
+			if (pString)
+				_navControl.navigationBar.topItem.prompt = pString;
+		}
 	}
 }
 @end

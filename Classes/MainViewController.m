@@ -46,10 +46,52 @@
 	[[NSNotificationCenter defaultCenter] postNotificationName:kSendToWebNowNotification object:self];
 }
 
+- (void) saveOpEnded:(NSNotification*)notify;
+{
+	if (_amountGiven)
+	{
+		[_navControl.navigationBar.topItem setLeftBarButtonItem:
+		 [[[UIBarButtonItem alloc] initWithTitle:@"Save"
+										   style:UIBarButtonItemStylePlain
+										  target:self
+										  action:@selector(save:)] autorelease] animated:YES];
+	}
+	else
+		[_navControl.navigationBar.topItem setLeftBarButtonItem:nil animated:YES];
+}
+
+- (void) save:(id)o;
+{
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(saveOpEnded:)
+												 name:kSaveOperationEndedNotification
+											   object:nil];
+	
+	[_navControl.navigationBar.topItem setLeftBarButtonItem:
+	 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop
+													target:self
+													action:@selector(save:)] autorelease]
+	 animated:YES];
+	
+	[[NSNotificationCenter defaultCenter] postNotificationName:kNeedToSaveNotification object:self];
+}
+
 - (void) editingEnd:(UITextField*)sender
 {
 	_amountGiven = (BOOL)[[_amountField.text stringByTrimmingCharactersInSet:
 						   [NSCharacterSet characterSetWithCharactersInString:@"$"]] doubleValue];
+	
+	if (_amountGiven && !_navControl.navigationBar.topItem.leftBarButtonItem)
+	{
+		[_navControl.navigationBar.topItem setLeftBarButtonItem:
+		 [[[UIBarButtonItem alloc] initWithTitle:@"Save"
+										   style:UIBarButtonItemStylePlain
+										  target:self
+										  action:@selector(save:)] autorelease] animated:YES];
+	}
+	else
+		[_navControl.navigationBar.topItem setLeftBarButtonItem:nil animated:YES];
+		
 }
 
 - (void) editingChanged:(UITextField*)sender

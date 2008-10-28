@@ -56,7 +56,23 @@
 	
 	UILabel* label = (UILabel*)[cell.contentView.subviews objectAtIndex:0];
 	label.textColor = [UIColor whiteColor];
-	label.text = [(NSDictionary*)[_info objectAtIndex:indexPath.row] valueForKey:@"titleNoFormatting"];
+	cell.font = label.font = [UIFont boldSystemFontOfSize:15.0];
+	
+	NSDictionary* infoDict = [_info objectAtIndex:indexPath.row];
+	NSMutableString* labelStr = [NSMutableString stringWithString:@"No results"];
+	if (infoDict)
+	{
+		labelStr = [NSMutableString string];
+		[labelStr appendString:[infoDict valueForKey:@"titleNoFormatting"]];
+		
+		NSArray* addrLines = [infoDict valueForKey:@"addressLines"];
+		if (addrLines && [addrLines count])
+		{
+			[labelStr appendFormat:@", %@", [addrLines objectAtIndex:0]];
+		}
+	}
+	
+	label.text = labelStr;
 	label.opaque = YES;
 	[cell.contentView addSubview:label];
 	

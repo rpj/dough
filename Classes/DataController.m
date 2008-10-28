@@ -100,6 +100,7 @@
 	NSUserDefaults* defaults = [NSUserDefaults standardUserDefaults];
 	NSArray* arr = [defaults objectForKey:kDoughEntriesDefaultsKey];
 	NSString* uid = [DoughAppDelegate deviceSHA1];
+	NSNotificationCenter* nCent = [NSNotificationCenter defaultCenter];
 	
 	if (arr && [arr count] && uid)
 	{
@@ -123,6 +124,7 @@
 			if (![retData length])
 			{
 				[defaults removeObjectForKey:kDoughEntriesDefaultsKey];
+				[nCent postNotificationName:kSaveWasSuccessfulNotification object:self];
 			}
 			else
 			{
@@ -134,6 +136,8 @@
 			NSLog(@"URL send was unsuccessful! Leaving object in defaults until next time...");
 		}
 	}
+	
+	[nCent postNotificationName:kSaveOperationEndedNotification object:self];
 }
 
 - (void)locationManager:(CLLocationManager *)manager 
@@ -150,10 +154,6 @@
 		
 		[_dataStore removeAllObjects];
 		[[NSNotificationCenter defaultCenter] postNotificationName:kFinishedLocatingNotification object:self];
-	}
-	else
-	{
-		NSLog(@"Might have gotten a cached location, still trying... %@", newLocation.timestamp);
 	}
 }
 
