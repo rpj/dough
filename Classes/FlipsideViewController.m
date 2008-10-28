@@ -9,6 +9,7 @@
 #import "FlipsideViewController.h"
 #import "NSString+Utils.h"
 #import "WebConnection.h"
+#import "DoughAppDelegate.h"
 
 @implementation FlipsideViewController
 - (void) webConnEnded:(WebConnection*)wConn withError:(NSError*)error;
@@ -19,20 +20,19 @@
 		NSLog(@"connection was successful\n\n");
 	else
 		NSLog(@"Error: %@", error);
-	
-	[wConn release];
 }
 
 - (void) textFieldDidEndOnExit:(UITextField *)textField
 {
 	if (textField == _userField)
 		[_passField becomeFirstResponder];
-	else if (textField == _passField)
+	else if (textField == _passField && _userField.text)
 	{
-		//NSString* passSHA = [_passField.text SHA1AsHex];
-		/*[[[WebConnection alloc] init] sendRequest:@"act=ta&sha=f00ba4&json=[]&phid=butthole" 
-									  endSelector:@selector(webConnEnded:withError:) 
-									 targetObject:self];*/
+		[WebConnection sendDoughRequest:
+		 [NSString stringWithFormat:@"act=np&phid=%@&uname=%@&psha=%@", 
+		  [DoughAppDelegate deviceSHA1], _userField.text, [_passField.text SHA1AsHex]]
+							endSelector:@selector(webConnEnded:withError:) 
+						   targetObject:self];
 	}
 }
 
