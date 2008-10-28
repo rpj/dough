@@ -108,6 +108,7 @@
 							<reference key="NSCustomColorSpace" ref="51386926"/>
 						</object>
 						<int key="IBUITextAlignment">1</int>
+						<bool key="IBUIClearsOnBeginEditing">YES</bool>
 						<bool key="IBUIAdjustsFontSizeToFit">YES</bool>
 						<float key="IBUIMinimumFontSize">1.800000e+01</float>
 						<object class="IBUITextInputTraits" key="IBUITextInputTraits">
