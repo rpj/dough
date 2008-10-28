@@ -170,6 +170,16 @@
 	}
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+	UILabel* l = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 20)] autorelease];
+	l.text = @"Categories";
+	l.textColor = [UIColor blackColor];
+	l.backgroundColor = [UIColor lightGrayColor];
+	l.font = [UIFont systemFontOfSize:16.0];
+	return l;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {	
 	if (indexPath.section == 0)

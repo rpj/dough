@@ -9,6 +9,7 @@
 #import "DataController.h"
 #import "DoughAppDelegate.h"
 #import "NSString+Utils.h"
+#import "WebConnection.h"
 
 #import <JSON/JSON.h>
 
@@ -107,17 +108,11 @@
 		NSString* body = [arr JSONRepresentation];
 		NSString* sha1 = [body SHA1AsHex];
 		
-		NSString* reqBody = [NSString stringWithFormat:@"act=ta&phid=%@&sha=%@&json=%@", uid, sha1, [body URLEncode]];
-		NSMutableURLRequest* urlReq = [NSMutableURLRequest requestWithURL:
-									   [NSURL URLWithString:@"http://24.130.91.57/cgi-bin/doughTest.cgi"]];
-		
-		[urlReq setHTTPMethod:@"POST"];
-		[urlReq setHTTPShouldHandleCookies:NO];
-		[urlReq setHTTPBody:[NSData dataWithBytes:[reqBody cStringUsingEncoding:NSASCIIStringEncoding]
-										   length:[reqBody lengthOfBytesUsingEncoding:NSASCIIStringEncoding]]];
-		
 		NSURLResponse* resp = nil;
-		NSData* retData = [NSURLConnection sendSynchronousRequest:urlReq returningResponse:&resp error:nil]; 
+		NSData* retData = [WebConnection sendSynchronousRequest:
+						   [NSString stringWithFormat:@"act=ta&phid=%@&sha=%@&json=%@", uid, sha1, [body URLEncode]]
+											  returningResponse:&resp
+														  error:nil];
 		
 		if (retData)
 		{

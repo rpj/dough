@@ -26,7 +26,7 @@
 		uint8_t count = 0;
 		for (; count < CC_SHA1_DIGEST_LENGTH; sha1out++, count++)
 		{
-			[shaAsHex appendFormat:@"%x", *sha1out];
+			[shaAsHex appendFormat:@"%02x", *sha1out];
 		}
 		
 		retVal = (NSString*)shaAsHex;

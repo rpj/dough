@@ -34,6 +34,7 @@
 		94907FAA0EB40FCD006EE8A3 /* BG3.png in Resources */ = {isa = PBXBuildFile; fileRef = 94907FA90EB40FCD006EE8A3 /* BG3.png */; };
 		94907FAD0EB4106D006EE8A3 /* BG5.png in Resources */ = {isa = PBXBuildFile; fileRef = 94907FAC0EB4106D006EE8A3 /* BG5.png */; };
 		94907FC90EB41891006EE8A3 /* doughTest.cgi in Resources */ = {isa = PBXBuildFile; fileRef = 94907FC80EB41891006EE8A3 /* doughTest.cgi */; };
+		949083B50EB6F6BD006EE8A3 /* WebConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 949083B40EB6F6BD006EE8A3 /* WebConnection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,6 +78,8 @@
 		94907FA90EB40FCD006EE8A3 /* BG3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG3.png; sourceTree = "<group>"; };
 		94907FAC0EB4106D006EE8A3 /* BG5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG5.png; sourceTree = "<group>"; };
 		94907FC80EB41891006EE8A3 /* doughTest.cgi */ = {isa = PBXFileReference; explicitFileType = text.script.perl; fileEncoding = 4; name = doughTest.cgi; path = doughweb/doughTest.cgi; sourceTree = "<group>"; };
+		949083B30EB6F6BD006EE8A3 /* WebConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebConnection.h; sourceTree = "<group>"; };
+		949083B40EB6F6BD006EE8A3 /* WebConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebConnection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +104,8 @@
 				289233AB0DB2D0DB0083E9F9 /* RootViewController.m */,
 				1D3623240D0F684500981E51 /* DoughAppDelegate.h */,
 				1D3623250D0F684500981E51 /* DoughAppDelegate.m */,
+				949083B30EB6F6BD006EE8A3 /* WebConnection.h */,
+				949083B40EB6F6BD006EE8A3 /* WebConnection.m */,
 			);
 			name = "Application Controllers";
 			path = Classes;
@@ -296,6 +301,7 @@
 				947F66D80EAE492F008DB1A4 /* TableController.m in Sources */,
 				947F66D90EAE492F008DB1A4 /* DataController.m in Sources */,
 				94907D910EB010EE006EE8A3 /* NSString+Utils.m in Sources */,
+				949083B50EB6F6BD006EE8A3 /* WebConnection.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

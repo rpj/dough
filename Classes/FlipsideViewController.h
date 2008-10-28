@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface FlipsideViewController : UIViewController {
-
+@interface FlipsideViewController : UIViewController <UITextFieldDelegate> {
+	IBOutlet UILabel*			_dotComLabel;
+	IBOutlet UITextField*		_userField;
+	IBOutlet UITextField*		_passField;
 }
 
 @end

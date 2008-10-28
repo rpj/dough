@@ -50,14 +50,14 @@
 {
 	if (_amountGiven)
 	{
-		[_navControl.navigationBar.topItem setLeftBarButtonItem:
+		[_navControl.navigationBar.topItem setRightBarButtonItem:
 		 [[[UIBarButtonItem alloc] initWithTitle:@"Save"
 										   style:UIBarButtonItemStylePlain
 										  target:self
 										  action:@selector(save:)] autorelease] animated:YES];
 	}
 	else
-		[_navControl.navigationBar.topItem setLeftBarButtonItem:nil animated:YES];
+		[_navControl.navigationBar.topItem setRightBarButtonItem:nil animated:YES];
 }
 
 - (void) save:(id)o;
@@ -67,7 +67,7 @@
 												 name:kSaveOperationEndedNotification
 											   object:nil];
 	
-	[_navControl.navigationBar.topItem setLeftBarButtonItem:
+	[_navControl.navigationBar.topItem setRightBarButtonItem:
 	 [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop
 													target:self
 													action:@selector(save:)] autorelease]
@@ -81,16 +81,16 @@
 	_amountGiven = (BOOL)[[_amountField.text stringByTrimmingCharactersInSet:
 						   [NSCharacterSet characterSetWithCharactersInString:@"$"]] doubleValue];
 	
-	if (_amountGiven && !_navControl.navigationBar.topItem.leftBarButtonItem)
+	if (_amountGiven && !_navControl.navigationBar.topItem.rightBarButtonItem)
 	{
-		[_navControl.navigationBar.topItem setLeftBarButtonItem:
+		[_navControl.navigationBar.topItem setRightBarButtonItem:
 		 [[[UIBarButtonItem alloc] initWithTitle:@"Save"
 										   style:UIBarButtonItemStylePlain
 										  target:self
 										  action:@selector(save:)] autorelease] animated:YES];
 	}
 	else
-		[_navControl.navigationBar.topItem setLeftBarButtonItem:nil animated:YES];
+		[_navControl.navigationBar.topItem setRightBarButtonItem:nil animated:YES];
 		
 }
 
@@ -210,11 +210,13 @@
 	_navControl.navigationBar.barStyle = UIBarStyleBlackOpaque;
 	_navControl.navigationBar.topItem.hidesBackButton = NO;
 	
-	UIBarButtonItem* bButt = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit 
+	/*
+	 UIBarButtonItem* bButt = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit 
 																			target:self
 																			action:@selector(edit:)] autorelease];
 	bButt.enabled = NO;
 	_navControl.navigationBar.topItem.rightBarButtonItem = bButt;
+	*/
 	
 	_howMuchLabel.font = _methodLabel.font = [UIFont boldSystemFontOfSize:20];
 	

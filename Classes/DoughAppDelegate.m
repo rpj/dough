@@ -8,7 +8,7 @@
 
 #import "DoughAppDelegate.h"
 #import "RootViewController.h"
-
+#import "WebConnection.h"
 #import "NSString+Utils.h"
 
 @implementation DoughAppDelegate
@@ -16,50 +16,24 @@
 @synthesize window;
 @synthesize rootViewController;
 
-//////
-- (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
+- (void) webConnEnded:(WebConnection*)wConn withError:(NSError*)error;
 {
-	_tempLoadData = [[NSMutableData alloc] init];
-}
-
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-	if (_tempLoadData) [_tempLoadData appendData:data];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection
-{
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-	
-	if (![_tempLoadData length])
-		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:kDoughDeviceRegisteredDefaultsKey];
+	if (error)
+	{
+		NSLog(@"There was a registration error:\n%@", error);
+	}
 	else
 	{
-		NSString* strData = [[NSString alloc] initWithBytes:[_tempLoadData bytes] 
-													 length:[_tempLoadData length] 
-												   encoding:NSUTF8StringEncoding];
-		
-		NSLog(@"Registration error: %@", strData);
-		[strData release];
+		NSLog(@"Found or set valid registration.");
+		[[NSUserDefaults standardUserDefaults] setBool:YES forKey:kDoughDeviceRegisteredDefaultsKey];
 	}
-	
-	[_tempLoadData release];
-	_tempLoadData = nil;
 }
 
 - (void) checkForAndRegisterDevice;
 {	
-	NSString* reqBody = [NSString stringWithFormat:@"act=nu&phid=%@", [DoughAppDelegate deviceSHA1]];
-	NSMutableURLRequest* urlReq = [NSMutableURLRequest requestWithURL:
-								   [NSURL URLWithString:@"http://24.130.91.57/cgi-bin/doughTest.cgi"]];
-	
-	[urlReq setHTTPMethod:@"POST"];
-	[urlReq setHTTPShouldHandleCookies:NO];
-	[urlReq setHTTPBody:[NSData dataWithBytes:[reqBody cStringUsingEncoding:NSASCIIStringEncoding]
-									   length:[reqBody lengthOfBytesUsingEncoding:NSASCIIStringEncoding]]];
-	
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	[NSURLConnection connectionWithRequest:urlReq delegate:self];
+	[[[WebConnection alloc] init] sendRequest:[NSString stringWithFormat:@"act=nu&phid=%@", [DoughAppDelegate deviceSHA1]] 
+								  endSelector:@selector(webConnEnded:withError:)
+								 targetObject:self];
 }
 
 //////

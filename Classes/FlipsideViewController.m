@@ -7,13 +7,41 @@
 //
 
 #import "FlipsideViewController.h"
-
+#import "NSString+Utils.h"
+#import "WebConnection.h"
 
 @implementation FlipsideViewController
+- (void) webConnEnded:(WebConnection*)wConn withError:(NSError*)error;
+{
+	NSLog(@"webConnEnded: %@", wConn);
+	
+	if (!error)
+		NSLog(@"connection was successful\n\n");
+	else
+		NSLog(@"Error: %@", error);
+	
+	[wConn release];
+}
 
+- (void) textFieldDidEndOnExit:(UITextField *)textField
+{
+	if (textField == _userField)
+		[_passField becomeFirstResponder];
+	else if (textField == _passField)
+	{
+		//NSString* passSHA = [_passField.text SHA1AsHex];
+		/*[[[WebConnection alloc] init] sendRequest:@"act=ta&sha=f00ba4&json=[]&phid=butthole" 
+									  endSelector:@selector(webConnEnded:withError:) 
+									 targetObject:self];*/
+	}
+}
 
 - (void)viewDidLoad {
-	self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];		
+	self.view.backgroundColor = [UIColor viewFlipsideBackgroundColor];
+	
+	_dotComLabel.font = [UIFont boldSystemFontOfSize:18.0];
+	[_userField addTarget:self action:@selector(textFieldDidEndOnExit:) forControlEvents:UIControlEventEditingDidEndOnExit];
+	[_passField addTarget:self action:@selector(textFieldDidEndOnExit:) forControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
 
