@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#define kWebServerURL		@"http://24.130.91.57/cgi-bin/doughTest.cgi"
+//#define kWebServerURL		@"http://24.130.91.57/cgi-bin/doughTest.cgi"
+#define kWebServerURL		@"http://doughapp.com/doughTest.cgi"
 
 @interface WebConnection : NSObject {
 	NSMutableData*			_tempLoadData;
