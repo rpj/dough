@@ -141,33 +141,32 @@
 	if (_givenFrame.size.height != tableView.frame.size.height)
 		tableView.frame = _givenFrame;
 	
-	NSLog(@"cellForRowAtIndexPath: %d, %d", indexPath.section, indexPath.row);
-	
 	NSString* cellID = [NSString stringWithFormat:@"iPath(%@)", indexPath];
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID];
 	
 	if (cell == nil)
 	{
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellID] autorelease];
+		
+		if (!_dataControl.hasData)
+			cell.accessoryType = UITableViewCellAccessoryNone;
+		
+		cell.accessoryType = _dataControl.locationServicesEnabled ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
+		cell.lineBreakMode = UILineBreakModeTailTruncation;
+		cell.selectionStyle = UITableViewCellSelectionStyleGray;
+		cell.backgroundView = [[[UIView alloc] initWithFrame:cell.bounds] autorelease];
+		cell.backgroundView.backgroundColor = [UIColor blackColor];
+		cell.opaque = YES;
+		
+		UILabel* label = (UILabel*)[cell.contentView.subviews objectAtIndex:0];
+		label.textColor = [UIColor whiteColor];
+		label.text = [[[_placeTypes objectAtIndex:indexPath.section] objectForKey:@"array"] objectAtIndex:indexPath.row];
+		label.textAlignment = UITextAlignmentCenter;
+		label.opaque = YES;
+		[cell.contentView addSubview:label];
 	}
 	else
 		[cell prepareForReuse];
-	
-	if (!_dataControl.hasData)
-		cell.accessoryType = UITableViewCellAccessoryNone;
-	
-	cell.accessoryType = _dataControl.locationServicesEnabled ? UITableViewCellAccessoryDisclosureIndicator : UITableViewCellAccessoryNone;
-	cell.lineBreakMode = UILineBreakModeTailTruncation;
-	cell.selectionStyle = UITableViewCellSelectionStyleGray;
-	cell.backgroundView = [[[UIView alloc] initWithFrame:cell.bounds] autorelease];
-	cell.backgroundView.backgroundColor = [UIColor blackColor];
-	cell.opaque = YES;
-	
-	UILabel* label = (UILabel*)[cell.contentView.subviews objectAtIndex:0];
-	label.textColor = [UIColor whiteColor];
-	label.text = [[[_placeTypes objectAtIndex:indexPath.section] objectForKey:@"array"] objectAtIndex:indexPath.row];
-	label.opaque = YES;
-	[cell.contentView addSubview:label];
 	
 	return cell;
 }
@@ -181,18 +180,13 @@
 }
 
 /// for UIAlertViewDelegate
-- (void)saveLastSearch:(id)obj;
-{
-	NSLog(@"saveLastSearch: %d", obj);
-}
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	if (buttonIndex == 1)
+	NSLog(@"clickedButtonAtIndex: %d", buttonIndex);
+	UITextField* search = (UITextField*)[alertView.subviews objectAtIndex:0];
+	
+	if (buttonIndex == 1 && (_query = search.text) && [_query length])
 	{
-		UITextField* search = (UITextField*)[alertView.subviews objectAtIndex:0];
-		
-		_query = search.text;
 		NSMutableArray* arr = [[_placeTypes objectAtIndex:kQuickSearchSectionNum] objectForKey:@"array"];
 		[arr addObject:_query];
 		[self.tableView insertRowsAtIndexPaths:
@@ -202,6 +196,10 @@
 		
 		[search removeFromSuperview];
 		[search release];
+	}
+	else
+	{
+		[self.tableView deselectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:kQuickSearchSectionNum] animated:YES];
 	}
 }
 
@@ -218,8 +216,9 @@
 			UILabel* l = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 20)] autorelease];
 			
 			l.text = [dict objectForKey:@"sectionName"];
-			l.textColor = [UIColor blackColor];
-			l.backgroundColor = [UIColor lightGrayColor];
+			l.textColor = [UIColor whiteColor];
+			l.textAlignment = UITextAlignmentCenter;
+			l.backgroundColor = [UIColor darkGrayColor];
 			l.font = [UIFont systemFontOfSize:16.0];
 			
 			[dict setObject:l forKey:@"sectionView"];
@@ -235,6 +234,7 @@
 	if (indexPath.section < [_placeTypes count])
 	{
 		NSArray* pArr = [[_placeTypes objectAtIndex:indexPath.section] objectForKey:@"array"];
+		[tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionMiddle animated:YES];
 		
 		if (indexPath.section == kQuickSearchSectionNum && indexPath.row == 0)
 		{

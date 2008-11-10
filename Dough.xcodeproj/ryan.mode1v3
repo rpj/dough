@@ -216,7 +216,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>941E32B80EC8A20100021B67</string>
+						<string>941E34E30EC8AD1900021B67</string>
 						<key>history</key>
 						<array>
 							<string>941E326E0EC7D88500021B67</string>
@@ -280,7 +280,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>941E32B90EC8A20100021B67</string>
+						<string>941E34E40EC8AD1900021B67</string>
 						<key>history</key>
 						<array>
 							<string>94907AFA0EAFB01F006EE8A3</string>
@@ -301,11 +301,11 @@
 			<key>Geometry</key>
 			<dict>
 				<key>Frame</key>
-				<string>{{0, 20}, {808, 753}}</string>
+				<string>{{0, 20}, {963, 746}}</string>
 				<key>PBXModuleWindowStatusBarHidden2</key>
 				<false/>
 				<key>RubberWindowFrame</key>
-				<string>419 64 808 794 0 0 1440 878 </string>
+				<string>274 88 963 787 0 0 1440 878 </string>
 			</dict>
 		</dict>
 		<dict>
@@ -326,7 +326,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>941E32BA0EC8A20100021B67</string>
+						<string>941E34E50EC8AD1900021B67</string>
 						<key>history</key>
 						<array>
 							<string>941E32100EC7D52600021B67</string>
@@ -378,7 +378,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>941E32BB0EC8A20100021B67</string>
+						<string>941E34E60EC8AD1900021B67</string>
 						<key>history</key>
 						<array>
 							<string>941E320E0EC7D52600021B67</string>
@@ -418,7 +418,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>941E32BC0EC8A20100021B67</string>
+						<string>941E34E70EC8AD1900021B67</string>
 						<key>history</key>
 						<array>
 							<string>949081C00EB6CCFE006EE8A3</string>
@@ -464,7 +464,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>941E32BD0EC8A20100021B67</string>
+						<string>941E34E80EC8AD1900021B67</string>
 						<key>history</key>
 						<array>
 							<string>949085AC0EB70CAB006EE8A3</string>
@@ -510,7 +510,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>941E32BE0EC8A20100021B67</string>
+						<string>941E34E90EC8AD1900021B67</string>
 						<key>history</key>
 						<array>
 							<string>9490858A0EB70B6F006EE8A3</string>
@@ -556,7 +556,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>941E32BF0EC8A20100021B67</string>
+						<string>941E34EA0EC8AD1900021B67</string>
 						<key>history</key>
 						<array>
 							<string>94565E4B0EB811100002F7B2</string>
@@ -602,7 +602,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>941E32C00EC8A20100021B67</string>
+						<string>941E34EB0EC8AD1900021B67</string>
 						<key>history</key>
 						<array>
 							<string>948A6F320EC79FE4005D3212</string>
@@ -642,7 +642,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>941E32C10EC8A20100021B67</string>
+						<string>941E34EC0EC8AD1900021B67</string>
 						<key>history</key>
 						<array>
 							<string>948A6F330EC79FE4005D3212</string>
@@ -682,7 +682,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>941E32C20EC8A20100021B67</string>
+						<string>941E34ED0EC8AD1900021B67</string>
 						<key>history</key>
 						<array>
 							<string>948A6F340EC79FE4005D3212</string>
@@ -797,13 +797,11 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>12</integer>
-									<integer>1</integer>
-									<integer>0</integer>
+									<integer>53</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {322, 535}}</string>
+							<string>{{0, 502}, {322, 535}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -852,7 +850,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>941E32B70EC8A20100021B67</string>
+										<string>941E34E20EC8AD1900021B67</string>
 										<key>history</key>
 										<array>
 											<string>94809B5B0EAD5097001FEE0B</string>
@@ -1113,13 +1111,13 @@
 		<string>949083180EB6F2D4006EE8A3</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>94907CEB0EAFF637006EE8A3</string>
-		<string>/Volumes/Data/Users/ryan/Development/iPhone/Dough/Dough.xcodeproj</string>
 		<string>94907F2F0EB3C9AA006EE8A3</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>941E320C0EC7D52600021B67</string>
 		<string>947F67380EAE4B48008DB1A4</string>
-		<string>947F680E0EAE51C9008DB1A4</string>
+		<string>/Volumes/Data/Users/ryan/Development/iPhone/Dough/Dough.xcodeproj</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>947F680E0EAE51C9008DB1A4</string>
 		<string>94907C930EAFBF9F006EE8A3</string>
 	</array>
 	<key>WindowString</key>
