@@ -1,1 +1,2 @@
-Dough README
+To build, you'll need the Cocoa JSON framework:
+http://code.google.com/p/json-framework/

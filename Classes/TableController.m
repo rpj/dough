@@ -13,6 +13,9 @@
 
 #import <CoreGraphics/CoreGraphics.h>
 
+#define kQuickSearchSectionNum		0
+#define kCategoriesSectionNum		1
+
 @implementation TableController
 
 @dynamic location;
@@ -90,33 +93,55 @@
 	}
 }
 
+- (id) init;
+{
+	if ((self = [super init]))
+	{
+		_placeTypes = [[NSMutableArray arrayWithObjects:
+						[NSMutableDictionary dictionaryWithObjectsAndKeys:
+						 @"Quick Search", @"sectionName",
+						 [NSMutableArray arrayWithObjects:@"New search...", nil], @"array", nil],
+						[NSMutableDictionary dictionaryWithObjectsAndKeys:
+						 @"Categories", @"sectionName",
+						 [NSMutableArray arrayWithObjects:@"Gas", @"Food", @"Coffee", @"Banking", 
+									@"Shopping", @"Grocery", @"Utility", @"Movie Theaters", @"Entertainment", 
+									@"Hotels", @"Bars", @"Nightlife", @"Transportation", nil],  @"array", nil], nil] retain];
+		
+		NSNotificationCenter* ncent = [NSNotificationCenter defaultCenter];
+		
+		[ncent addObserver:self selector:@selector(notify:) name:kStartingToLocateNotification object:nil];
+		[ncent addObserver:self selector:@selector(notify:) name:kStartingToLoadNotification object:nil];
+		[ncent addObserver:self selector:@selector(notify:) name:kFinishedLocatingNotification object:nil];
+		[ncent addObserver:self selector:@selector(notify:) name:kFinishedLoadingNotification object:nil];
+		
+		[ncent addObserver:self selector:@selector(concreteWhere:) name:kDrillDownSelectNotification object:nil];
+		
+		_dataControl = [[DataController alloc] init];
+		
+		_concreteWhereInfo = nil;
+		_lastSelected = nil;
+	}
+	
+	return self;
+}
+
 - (void) viewDidLoad;
 {
-	_placeTypes = [[NSMutableArray arrayWithObjects:@"Gas", @"Food", @"Coffee", @"Banking", 
-					@"Shopping", @"Grocery", @"Utility", @"Movie Theaters", @"Entertainment", 
-					@"Hotels", @"Bars", @"Nightlife", @"Transportation", @"Custom Search...", nil] retain];
-	
-	NSNotificationCenter* ncent = [NSNotificationCenter defaultCenter];
-	
-	[ncent addObserver:self selector:@selector(notify:) name:kStartingToLocateNotification object:nil];
-	[ncent addObserver:self selector:@selector(notify:) name:kStartingToLoadNotification object:nil];
-	[ncent addObserver:self selector:@selector(notify:) name:kFinishedLocatingNotification object:nil];
-	[ncent addObserver:self selector:@selector(notify:) name:kFinishedLoadingNotification object:nil];
-	
-	[ncent addObserver:self selector:@selector(concreteWhere:) name:kDrillDownSelectNotification object:nil];
-	
-	_dataControl = [[DataController alloc] init];
-	
 	_tv = (UITableView*)self.view;
 	_givenFrame = self.view.frame;
-	
-	_concreteWhereInfo = nil;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return [_placeTypes count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {	
 	if (_givenFrame.size.height != tableView.frame.size.height)
 		tableView.frame = _givenFrame;
+	
+	NSLog(@"cellForRowAtIndexPath: %d, %d", indexPath.section, indexPath.row);
 	
 	NSString* cellID = [NSString stringWithFormat:@"iPath(%@)", indexPath];
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellID];
@@ -140,7 +165,7 @@
 	
 	UILabel* label = (UILabel*)[cell.contentView.subviews objectAtIndex:0];
 	label.textColor = [UIColor whiteColor];
-	label.text = [_placeTypes objectAtIndex:indexPath.row];
+	label.text = [[[_placeTypes objectAtIndex:indexPath.section] objectForKey:@"array"] objectAtIndex:indexPath.row];
 	label.opaque = YES;
 	[cell.contentView addSubview:label];
 	
@@ -149,22 +174,32 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	switch (section)
-	{
-		case 0:
-			return [_placeTypes count];
-	}
+	if (section < [_placeTypes count])
+		return [[[_placeTypes objectAtIndex:section] objectForKey:@"array"] count];
 	
 	return 0;
 }
 
 /// for UIAlertViewDelegate
+- (void)saveLastSearch:(id)obj;
+{
+	NSLog(@"saveLastSearch: %d", obj);
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	if (buttonIndex == 1)
 	{
 		UITextField* search = (UITextField*)[alertView.subviews objectAtIndex:0];
+		
+		_query = search.text;
+		NSMutableArray* arr = [[_placeTypes objectAtIndex:kQuickSearchSectionNum] objectForKey:@"array"];
+		[arr addObject:_query];
+		[self.tableView insertRowsAtIndexPaths:
+		 [NSArray arrayWithObject:[NSIndexPath indexPathForRow:([arr count] - 1) inSection:kQuickSearchSectionNum]]
+							  withRowAnimation:UITableViewRowAnimationFade];
 		[_dataControl startLoadingLocalInfoWithQueryString:search.text];
+		
 		[search removeFromSuperview];
 		[search release];
 	}
@@ -172,19 +207,36 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-	UILabel* l = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 20)] autorelease];
-	l.text = @"Categories";
-	l.textColor = [UIColor blackColor];
-	l.backgroundColor = [UIColor lightGrayColor];
-	l.font = [UIFont systemFontOfSize:16.0];
-	return l;
+	UIView* retView = nil;
+	
+	if (section < [_placeTypes count])
+	{
+		NSMutableDictionary* dict = [_placeTypes objectAtIndex:section];
+		
+		if (dict && !(retView = [dict objectForKey:@"sectionView"]))
+		{
+			UILabel* l = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 320, 20)] autorelease];
+			
+			l.text = [dict objectForKey:@"sectionName"];
+			l.textColor = [UIColor blackColor];
+			l.backgroundColor = [UIColor lightGrayColor];
+			l.font = [UIFont systemFontOfSize:16.0];
+			
+			[dict setObject:l forKey:@"sectionView"];
+			retView = l;
+		}
+	}
+	
+	return retView;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {	
-	if (indexPath.section == 0)
+	if (indexPath.section < [_placeTypes count])
 	{
-		if (indexPath.row == ([_placeTypes count] - 1))
+		NSArray* pArr = [[_placeTypes objectAtIndex:indexPath.section] objectForKey:@"array"];
+		
+		if (indexPath.section == kQuickSearchSectionNum && indexPath.row == 0)
 		{
 			UIAlertView *myAlertView = [[UIAlertView alloc] initWithTitle:@"Search Google Local:" 
 																  message:@" " 
@@ -212,10 +264,12 @@
 			if (!_dataControl.latestLocation)
 				pString = @"Locating you...";
 			
-			_fetchAfterLoc = ![_dataControl startLoadingLocalInfoWithQueryString:(_query = [_placeTypes objectAtIndex:indexPath.row])];
+			_fetchAfterLoc = ![_dataControl startLoadingLocalInfoWithQueryString:(_query = [pArr objectAtIndex:indexPath.row])];
 			
 			if (pString)
 				_navControl.navigationBar.topItem.prompt = pString;
+			
+			_lastSelected = [indexPath retain];
 		}
 	}
 }

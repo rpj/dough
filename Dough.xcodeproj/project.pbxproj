@@ -33,7 +33,6 @@
 		94907F820EB3F16D006EE8A3 /* BG4.png in Resources */ = {isa = PBXBuildFile; fileRef = 94907F810EB3F16D006EE8A3 /* BG4.png */; };
 		94907FAA0EB40FCD006EE8A3 /* BG3.png in Resources */ = {isa = PBXBuildFile; fileRef = 94907FA90EB40FCD006EE8A3 /* BG3.png */; };
 		94907FAD0EB4106D006EE8A3 /* BG5.png in Resources */ = {isa = PBXBuildFile; fileRef = 94907FAC0EB4106D006EE8A3 /* BG5.png */; };
-		94907FC90EB41891006EE8A3 /* doughTest.cgi in Resources */ = {isa = PBXBuildFile; fileRef = 94907FC80EB41891006EE8A3 /* doughTest.cgi */; };
 		949083B50EB6F6BD006EE8A3 /* WebConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 949083B40EB6F6BD006EE8A3 /* WebConnection.m */; };
 /* End PBXBuildFile section */
 
@@ -77,7 +76,6 @@
 		94907F810EB3F16D006EE8A3 /* BG4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG4.png; sourceTree = "<group>"; };
 		94907FA90EB40FCD006EE8A3 /* BG3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG3.png; sourceTree = "<group>"; };
 		94907FAC0EB4106D006EE8A3 /* BG5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BG5.png; sourceTree = "<group>"; };
-		94907FC80EB41891006EE8A3 /* doughTest.cgi */ = {isa = PBXFileReference; explicitFileType = text.script.perl; fileEncoding = 4; name = doughTest.cgi; path = doughweb/doughTest.cgi; sourceTree = "<group>"; };
 		949083B30EB6F6BD006EE8A3 /* WebConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebConnection.h; sourceTree = "<group>"; };
 		949083B40EB6F6BD006EE8A3 /* WebConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebConnection.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,7 +212,6 @@
 		94907FC70EB41880006EE8A3 /* Web */ = {
 			isa = PBXGroup;
 			children = (
-				94907FC80EB41891006EE8A3 /* doughTest.cgi */,
 			);
 			name = Web;
 			sourceTree = "<group>";
@@ -279,7 +276,6 @@
 				94907F820EB3F16D006EE8A3 /* BG4.png in Resources */,
 				94907FAA0EB40FCD006EE8A3 /* BG3.png in Resources */,
 				94907FAD0EB4106D006EE8A3 /* BG5.png in Resources */,
-				94907FC90EB41891006EE8A3 /* doughTest.cgi in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

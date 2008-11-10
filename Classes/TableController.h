@@ -25,6 +25,8 @@
 	CGRect									_givenFrame;
 	
 	NSDictionary*							_concreteWhereInfo;
+	
+	NSIndexPath*							_lastSelected;
 }
 
 @property (nonatomic, retain) UINavigationController* navController;
