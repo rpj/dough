@@ -56,7 +56,7 @@
 								<double key="NSSize">1.500000e+01</double>
 								<int key="NSfFlags">16</int>
 							</object>
-							<int key="IBUIButtonType">4</int>
+							<int key="IBUIButtonType">3</int>
 							<bool key="IBUIShowsTouchWhenHighlighted">YES</bool>
 							<object class="NSColor" key="IBUIHighlightedTitleColor">
 								<int key="NSColorSpace">1</int>
@@ -79,7 +79,9 @@
 					</object>
 					<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				</object>
-				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
+					<int key="IBUIStatusBarStyle">1</int>
+				</object>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">

@@ -59,7 +59,7 @@
 	[window addSubview:[rootViewController view]];
 	[window makeKeyAndVisible];
 	
-	[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
+	//[UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleBlackOpaque;
 	[UIApplication sharedApplication].delegate = self;
 	
 	// ensure the user defaults has a SHA-1'ed version of the device's ID stored
